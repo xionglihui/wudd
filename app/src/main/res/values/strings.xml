@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">wudd</string>
+
+    <string name="title_bar_back">返回</string>
+
+    <!--异常提示-->
+    <string name="exception_no_authority">对不起，您的账户已经超时，请重新登录</string>
+    <string name="exception_json_error">服务器异常，请稍后再试</string>
+    <string name="exception_netword_error">网络异常，请检查网络后再试</string>
+
+    <!-- dialog -->
+    <string name="dialog_common_title_text">温馨提示</string>
+    <string name="dialog_common_button_sure">确定</string>
+    <string name="dialog_common_button_cancle">取消</string>
+    <string name="dialog_choose_picture_button_camera">拍照</string>
+    <string name="dialog_choose_picture_button_album">从手机相册选择</string>
+    <string name="dialog_content_quit_system">您确认退出应用吗？</string>
+    <string name="dialog_toast_enter_transaction_password">请输入交易密码</string>
+</resources>

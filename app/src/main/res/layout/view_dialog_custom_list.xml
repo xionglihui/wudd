@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/custom_dialog_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#B0000000">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="50dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/custom_dialog_list_title"
+            android:layout_width="260dp"
+            android:layout_height="45dp"
+            android:background="@color/base_theme_color"
+            android:gravity="center"
+            android:textColor="@color/black_normal_text"
+            android:textSize="18sp" />
+
+        <ListView
+            android:id="@+id/custom_dialog_listview"
+            style="@style/common_line_listview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical" />
+    </LinearLayout>
+
+</RelativeLayout>

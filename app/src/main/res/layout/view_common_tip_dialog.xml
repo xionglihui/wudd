@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_common_dialog"
+    android:minWidth="280dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/common_tip_dialog_title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="18dp"
+            android:textColor="@color/black_big_text"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/common_tip_dialog_message"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/common_tip_dialog_message_1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dip"
+            android:paddingRight="20dip"
+            android:paddingTop="2dip"
+            android:gravity="center"
+            android:textColor="@color/black_normal_text"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/common_tip_dialog_message_2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dip"
+            android:paddingRight="20dip"
+            android:paddingTop="2dip"
+            android:textColor="@color/black_normal_text"
+            android:textSize="18sp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <View style="@style/common_line_horizontal" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="8dp"
+        android:gravity="center"
+        android:paddingTop="8dp">
+
+        <Button
+            android:id="@+id/common_tip_dialog_cancle_button"
+            style="@style/common_button"
+            android:layout_width="0dip"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/common_tip_dialog_positive_button"
+            style="@style/common_button"
+            android:layout_width="0dip"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</LinearLayout>

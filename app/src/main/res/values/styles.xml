@@ -1,0 +1,303 @@
+<resources>
+
+    <!-- 弹出框 -->
+    <style name="Dialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
+    <style name="style_transparent" parent="AppTheme">
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+    <!-- common -->
+    <style name="common_button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:background">@drawable/common_btn_org_big</item>
+        <item name="android:layout_marginLeft">14dp</item>
+        <item name="android:layout_marginRight">14dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="common_button_org_white">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:background">@drawable/bg_edt_org</item>
+        <item name="android:layout_marginLeft">14dp</item>
+        <item name="android:layout_marginRight">14dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:textColor">@color/base_theme_color</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="common_button_white">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:background">@drawable/common_btn_white</item>
+        <item name="android:layout_marginLeft">14dp</item>
+        <item name="android:layout_marginRight">14dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:textColor">@color/black_normal_text</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="common_textview">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="common_button_small">
+        <item name="android:layout_width">90dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:background">@drawable/common_btn_org</item>
+        <item name="android:textColor">@color/red_normal_text</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="common_line_vertical">
+        <item name="android:layout_width">0.1dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/black_line_color</item>
+    </style>
+
+    <style name="common_line_horizontal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.1dp</item>
+        <item name="android:background">@color/black_line_color</item>
+    </style>
+
+    <style name="common_line_horizontal_left_margin46" parent="@style/common_line_horizontal">
+        <item name="android:layout_marginLeft">46dp</item>
+    </style>
+
+    <style name="common_line_horizontal_left_margin14" parent="@style/common_line_horizontal">
+        <item name="android:layout_marginLeft">14dp</item>
+    </style>
+
+    <style name="common_line_horizontal_left_margin12" parent="@style/common_line_horizontal">
+        <item name="android:layout_marginLeft">12dp</item>
+    </style>
+
+    <style name="common_line_horizontal_magtop8" parent="@style/common_line_horizontal">
+        <item name="android:layout_marginTop">8dp</item>
+    </style>
+    <style name="Theme.PageIndicatorDefaults" parent="android:Theme">
+        <item name="vpiIconPageIndicatorStyle">@style/Widget.IconPageIndicator</item>
+        <item name="vpiTabPageIndicatorStyle">@style/Widget.TabPageIndicator</item>
+    </style>
+
+    <style name="Widget"></style>
+
+    <style name="Widget.TabPageIndicator" parent="Widget">
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">22dip</item>
+        <item name="android:paddingRight">22dip</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.TabPageIndicator</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="TextAppearance.TabPageIndicator" parent="Widget">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Widget.IconPageIndicator" parent="Widget">
+        <item name="android:layout_marginLeft">6dp</item>
+        <item name="android:layout_marginRight">6dp</item>
+    </style>
+
+    <style name="common_noline_listview">
+        <item name="android:cacheColorHint">@color/transparent</item>
+        <item name="android:background">@null</item>
+        <item name="android:descendantFocusability">blocksDescendants</item>
+        <item name="android:divider">@null</item>
+        <item name="android:fadeScrollbars">true</item>
+        <item name="android:listSelector">@color/transparent</item>
+    </style>
+
+    <style name="common_line_listview" parent="@style/common_noline_listview">
+        <item name="android:divider">@color/black_small_text</item>
+        <item name="android:dividerHeight">0.1dp</item>
+    </style>
+
+    <style name="common_dialog_list_item_style">
+        <item name="android:layout_width">260dp</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:textColor">@color/black_normal_text</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="common_item_click_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/bottom_common_height</item>
+        <item name="android:background">@drawable/bg_click_color_chage</item>
+    </style>
+
+    <style name="common_edittext_textcolor">
+        <item name="android:textColor">@color/black_big_text</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColorHint">@color/black_small_text</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <!-- 通用 item布局 没有item 内容-->
+    <style name="common_item_layout_only_text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/item_common_height</item>
+        <item name="android:background">@drawable/bg_common_item_gray_white</item>
+        <item name="android:drawableRight">@mipmap/icon_common_item_right_arrow</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:paddingLeft">@dimen/item_common_padding</item>
+        <item name="android:paddingRight">@dimen/item_common_padding</item>
+        <item name="android:textColor">@color/black_big_text</item>
+        <item name="android:drawablePadding">12dp</item>
+    </style>
+
+    <!-- 通用 item布局-->
+    <style name="common_item_layout_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/item_common_height</item>
+        <item name="android:background">@drawable/bg_common_item_gray_white</item>
+        <item name="android:paddingLeft">@dimen/item_common_padding</item>
+        <item name="android:paddingRight">@dimen/item_common_padding</item>
+    </style>
+
+    <!-- 通用 item布局  左边的txt-->
+    <style name="common_item_layout_left_txt_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:drawablePadding">@dimen/item_common_padding</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/black_big_text</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <!-- 通用 item布局  右边的箭头-->
+    <style name="common_item_layout_right_arrow_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_marginLeft">19dp</item>
+        <item name="android:src">@mipmap/icon_common_item_right_arrow</item>
+    </style>
+
+    <!-- 通用 menu布局 -->
+    <style name="common_item_only_text_menu">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">99dp</item>
+        <item name="android:paddingTop">25dp</item>
+        <item name="android:paddingBottom">25dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/bg_common_item_gray_white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black_big_text</item>
+        <item name="android:drawablePadding">11dp</item>
+    </style>
+
+    <!--首页-->
+    <style name="main_activity_bottom_tabs_style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1.0</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">2dp</item>
+        <item name="android:textSize">12sp</item>
+
+    </style>
+
+
+    <style name="style_fill_wrap">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="style_wrap_wrap">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="style_match_match">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+    </style>
+
+
+    <style name="style_login_edittext" parent="@style/common_edittext_textcolor">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/item_common_height</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:textColor">@color/black_normal_text</item>
+        <item name="android:textColorHint">@color/black_small_text</item>
+        <item name="android:drawablePadding">13dp</item>
+        <item name="android:paddingLeft">13dp</item>
+    </style>
+
+    <style name="style_login_ll_show" parent="@style/style_fill_wrap">
+        <item name="android:layout_marginLeft">24dp</item>
+        <item name="android:layout_marginRight">24dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="style_login_edittext_input">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">@dimen/item_common_height</item>
+        <item name="android:layout_marginLeft">18dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+
+    <style name="style_more_main_left_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/black_big_text</item>
+    </style>
+
+
+    <style name="style_more_item_left_txt">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">43dp</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginLeft">13dp</item>
+        <item name="android:drawablePadding">13dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/black_big_text</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <!-- 我的账户右边的text -->
+    <style name="style_more_item_right_txt">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:textColor">@color/black_big_text</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+
+
+
+</resources>

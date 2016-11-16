@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="title_common_height">48dp</dimen>
+    <dimen name="bottom_common_height">52dp</dimen>
+
+    <dimen name="item_common_height">48dp</dimen>
+    <dimen name="item_common_padding">13dp</dimen>
+
+    <dimen name="banner_hegith">140dp</dimen>
+
+    <dimen name="edt_common_height">48dp</dimen>
+
+    <dimen name="btn_edt_margin_bottom">11dp</dimen>
+    <dimen name="widraw_title_width">100dp</dimen>
+
+
+</resources>
