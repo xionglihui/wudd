@@ -1,53 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/title_bar_layout"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/title_common_height"
-    android:background="@color/base_theme_color">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:id="@+id/title_bar_left_button_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="8dp"
-        android:drawableLeft="@mipmap/icon_left_back_black"
-        android:drawablePadding="8dp"
-        android:gravity="center"
-        android:minWidth="40dp"
-        android:paddingRight="6dp"
-        android:textColor="@color/black_big_text"
-        android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/title_bar_center_text_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:textColor="@color/white"
-        android:gravity="center"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:textSize="18sp" />
+    <RelativeLayout
+        android:id="@+id/title_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_common_height"
+        android:background="@color/base_theme_color">
 
-    <TextView
-        android:id="@+id/title_bar_right_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="8dp"
-        android:gravity="center|right"
-        android:minWidth="32dp"
-        android:padding="6dp"
-        android:textColor="@color/white"
-        android:textSize="16sp" />
+        <TextView
+            android:id="@+id/title_bar_left_button_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:drawableLeft="@mipmap/icon_left_back_black"
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:minWidth="40dp"
+            android:paddingRight="6dp"
+            android:textColor="@color/black_big_text"
+            android:textSize="18sp" />
 
-    <View
-        android:id="@+id/title_bar_bottom_line"
-        style="@style/common_line_horizontal"
-        android:layout_alignParentBottom="true" />
+        <TextView
+            android:id="@+id/title_bar_center_text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/title_bar_right_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8dp"
+            android:gravity="center|right"
+            android:minWidth="32dp"
+            android:padding="6dp"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <View
+            android:id="@+id/title_bar_bottom_line"
+            style="@style/common_line_horizontal"
+            android:layout_alignParentBottom="true" />
+
+    </RelativeLayout>
+</layout>

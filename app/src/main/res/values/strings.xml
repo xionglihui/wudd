@@ -16,4 +16,9 @@
     <string name="dialog_choose_picture_button_album">从手机相册选择</string>
     <string name="dialog_content_quit_system">您确认退出应用吗？</string>
     <string name="dialog_toast_enter_transaction_password">请输入交易密码</string>
+
+    <!--Login-->
+    <string name="login_activity_input_mobile">请输入手机号码</string>
+    <string name="login_activity_input_pwd">请输入密码</string>
+    <string name="login_btn_login">登录</string>
 </resources>
