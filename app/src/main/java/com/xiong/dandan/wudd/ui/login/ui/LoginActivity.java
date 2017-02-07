@@ -5,18 +5,17 @@ import android.support.design.widget.TextInputEditText;
 import android.view.View;
 
 import com.xiong.dandan.wudd.R;
-import com.xiong.dandan.wudd.common.base.BaseTitleBarActivity;
+import com.xiong.dandan.wudd.common.base.BaseMVPActivity;
 import com.xiong.dandan.wudd.ui.login.presenter.LoginPresenterImp;
 
 /**
  * login
  * Created by xionglh on 2017/1/4.
  */
-public class LoginActivity extends BaseTitleBarActivity implements ILoginView ,View.OnClickListener{
+public class LoginActivity extends BaseMVPActivity<ILoginView,LoginPresenterImp> implements ILoginView ,View.OnClickListener{
 
 
     private TextInputEditText mTxtName, mTxtPwd;
-    private LoginPresenterImp  mLoginPresenterImp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +24,13 @@ public class LoginActivity extends BaseTitleBarActivity implements ILoginView ,V
         mTxtName = (TextInputEditText) findViewById(R.id.txt_login_phone);
         mTxtPwd = (TextInputEditText) findViewById(R.id.txt_login_pwd);
         findViewById(R.id.btn_login_commint).setOnClickListener(this);
-        mLoginPresenterImp=new LoginPresenterImp(this);
     }
+
+    @Override
+    protected LoginPresenterImp createPersenter() {
+        return new LoginPresenterImp();
+    }
+
 
     @Override
     public String getLoginName() {
@@ -74,7 +78,7 @@ public class LoginActivity extends BaseTitleBarActivity implements ILoginView ,V
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btn_login_commint:
-                mLoginPresenterImp.login();
+                mPersenter.login();
                 break;
         }
     }

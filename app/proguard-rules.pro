@@ -15,3 +15,37 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+-target 1.6
+-dontusemixedcaseclassnames
+-dontskipnonpubliclibraryclasses
+-dontpreverify
+-verbose
+-dontwarn
+-dump class_files.txt
+-printseeds seeds.txt
+-printusage unused.txt
+-printmapping mapping.txt
+-keepattributes *Annotation*
+-keepattributes Signature
+-keepattributes *JavascriptInterface*
+-renamesourcefileattribute SourceFile
+-keepattributes SourceFile,LineNumberTable
+
+-dontwarn  com.google.**
+-dontwarn org.apache.velocity.**
+-dontwarn org.apache.commons.**
+-dontwarn com.slidingmenu.**
+-dontwarn com.lidroid.xutils.**
+-dontwarn com.lidroid.xutils.http.**
+-dontwarn org.android.**
+
+-keepclasseswithmembernames class * {
+    native <methods>;
+}
+
+-dontwarn com.ut.mini.**
+-dontwarn com.google.common.**
+-dontwarn  u.aly.bt
+
+-keep class com.xiong.dandan.wudd.net.response.**{*;}
+-keep class com.xiong.dandan.wudd.common.entiy.**{*;}
