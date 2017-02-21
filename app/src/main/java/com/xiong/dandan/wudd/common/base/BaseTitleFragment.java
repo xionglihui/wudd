@@ -1,7 +1,10 @@
 package com.xiong.dandan.wudd.common.base;
 
 import android.graphics.drawable.Drawable;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -12,21 +15,26 @@ import com.xiong.dandan.wudd.R;
 /**
  * Created by xionglh on 2016/8/1.
  */
-public class BaseTitleFragment extends  BaseFragment {
-    private TextView mTextViewTitle, mTextViewLeft, mTextViewRight;
+public class BaseTitleFragment extends BaseFragment {
+    protected TextView mTextViewTitle, mTextViewLeft, mTextViewRight;
+    protected RelativeLayout mLayoutTitleBar;
+    private FrameLayout mContentLayout;
 
     protected RelativeLayout mRlViewTitile;
 
 
 
-
-    protected void initTitles(View view) {
-        mRlViewTitile=(RelativeLayout)view.findViewById(R.id.title_bar_layout);
-        mTextViewTitle = (TextView)view. findViewById(R.id.title_bar_center_text_title);
-        mTextViewLeft = (TextView)view. findViewById(R.id.title_bar_left_button_back);
-        mTextViewRight = (TextView)view. findViewById(R.id.title_bar_right_button);
-        hideLeftButton();
-        hideRightButton();
+    // 带title 的 fragment
+    public View onInflaterViewWithTitle(LayoutInflater inflater, ViewGroup container, int layoutId) {
+        View mView = inflater.inflate(R.layout.fragment_base_layout, container, false);
+        mTextViewTitle = (TextView) mView.findViewById(R.id.title_bar_center_text_title);
+        mTextViewLeft = (TextView) mView.findViewById(R.id.title_bar_left_button_back);
+        mTextViewLeft.setCompoundDrawables(null, null, null, null);
+        mTextViewRight = (TextView) mView.findViewById(R.id.title_bar_right_button);
+        mLayoutTitleBar = (RelativeLayout) mView.findViewById(R.id.title_bar_layout);
+        mContentLayout = (FrameLayout) mView.findViewById(R.id.base_fragment_content_layout);
+        inflater.inflate(layoutId, mContentLayout, true);
+        return mView;
     }
 
     /**
@@ -54,7 +62,6 @@ public class BaseTitleFragment extends  BaseFragment {
     }
 
 
-
     /**
      * 左边 右边 的button 都是默认隐藏的
      */
@@ -72,12 +79,11 @@ public class BaseTitleFragment extends  BaseFragment {
     }
 
 
-
     /**
      * 显示左键，修改文字及添加listener
      */
     public void showLeftButtonWithTextListener(String text,
-                                               View.OnClickListener listener){
+                                               View.OnClickListener listener) {
         if (mTextViewLeft != null) {
             mTextViewLeft.setText(text);
             mTextViewLeft.setOnClickListener(listener);
@@ -139,6 +145,21 @@ public class BaseTitleFragment extends  BaseFragment {
     public void showRightButtonWithTextAndListener(int textId,
                                                    View.OnClickListener listener) {
         showRightButtonWithTextAndListener(AppAplicition.genInstance().getString(textId), listener);
+    }
+
+    @Override
+    public int onSetLayoutId() {
+        return 0;
+    }
+
+    @Override
+    public void initView() {
+        mRlViewTitile = (RelativeLayout) mContentView.findViewById(R.id.title_bar_layout);
+        mTextViewTitle = (TextView) mContentView.findViewById(R.id.title_bar_center_text_title);
+        mTextViewLeft = (TextView) mContentView.findViewById(R.id.title_bar_left_button_back);
+        mTextViewRight = (TextView) mContentView.findViewById(R.id.title_bar_right_button);
+        hideLeftButton();
+        hideRightButton();
     }
 }
 
