@@ -8,7 +8,7 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.xiong.dandan.wudd.AppAplicition;
+import com.xiong.dandan.wudd.AppMyAplicition;
 import com.xiong.dandan.wudd.R;
 
 
@@ -112,7 +112,7 @@ public class BaseTitleFragment extends BaseFragment {
     public void showRightButtonWithImageAndListener(int imageId,
                                                     View.OnClickListener listener) {
         if (mTextViewRight != null) {
-            Drawable nav_up = AppAplicition.genInstance().getResources().getDrawable(imageId);
+            Drawable nav_up = AppMyAplicition.genInstance().getResources().getDrawable(imageId);
             nav_up.setBounds(0, 0, nav_up.getMinimumWidth(),
                     nav_up.getMinimumHeight());
             mTextViewRight.setCompoundDrawables(null, null, nav_up, null);
@@ -144,7 +144,7 @@ public class BaseTitleFragment extends BaseFragment {
      */
     public void showRightButtonWithTextAndListener(int textId,
                                                    View.OnClickListener listener) {
-        showRightButtonWithTextAndListener(AppAplicition.genInstance().getString(textId), listener);
+        showRightButtonWithTextAndListener(AppMyAplicition.genInstance().getString(textId), listener);
     }
 
     @Override

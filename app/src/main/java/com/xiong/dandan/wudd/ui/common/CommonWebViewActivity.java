@@ -14,7 +14,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.xiong.dandan.wudd.AppAplicition;
+import com.xiong.dandan.wudd.AppMyAplicition;
 import com.xiong.dandan.wudd.R;
 import com.xiong.dandan.wudd.common.base.BaseTitleBarActivity;
 import com.xiong.dandan.wudd.libs.utils.VersionUtil;
@@ -113,7 +113,7 @@ public class CommonWebViewActivity extends BaseTitleBarActivity {
     private WebChromeClient mWebchromeclient = new WebChromeClient() {
         public boolean onJsAlert(WebView view, String url, String message,
                                  JsResult result) {
-            AppAplicition.genInstance().showToast(message);
+            AppMyAplicition.genInstance().showToast(message);
 
             result.confirm();
             return true;

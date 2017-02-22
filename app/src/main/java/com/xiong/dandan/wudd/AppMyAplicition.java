@@ -3,12 +3,10 @@ package com.xiong.dandan.wudd;
 import android.os.Environment;
 
 import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 import com.xiong.dandan.wudd.common.base.BaseActivity;
 import com.xiong.dandan.wudd.common.base.BaseApplication;
 import com.xiong.dandan.wudd.libs.GlobalConstants;
-import com.xiong.dandan.wudd.net.VolleyImageCache;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -17,15 +15,14 @@ import java.util.List;
 /**
  * Created by xionglh on 2016/9/21.
  */
-public class AppAplicition extends BaseApplication {
+public class AppMyAplicition extends BaseApplication {
 
 
-    private static AppAplicition mInstance;
+    private static AppMyAplicition mInstance;
     private static RequestQueue mQueue;
-    private static ImageLoader mImageLoader;
     public List<BaseActivity> mTotalActivity=new ArrayList<>();
 
-    public static AppAplicition genInstance() {
+    public static AppMyAplicition genInstance() {
         return mInstance;
     }
 
@@ -33,9 +30,6 @@ public class AppAplicition extends BaseApplication {
         return mQueue;
     }
 
-    public static ImageLoader genImageLoader() {
-        return mImageLoader;
-    }
 
     @Override
     public void onCreate() {
@@ -47,8 +41,6 @@ public class AppAplicition extends BaseApplication {
     private void initDatas() {
         mInstance = this;
         mQueue = Volley.newRequestQueue(this);
-        VolleyImageCache lruImageCache = VolleyImageCache.genInstance();
-        mImageLoader = new ImageLoader(mQueue, lruImageCache);
     }
 
     public static void createPathForPictures() {

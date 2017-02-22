@@ -1,10 +1,16 @@
-package com.xiong.dandan.wudd.api;
+package com.xiong.dandan.wudd.net.api;
 
-import com.xiong.dandan.wudd.AppAplicition;
+import com.xiong.dandan.wudd.AppMyAplicition;
 import com.xiong.dandan.wudd.Config;
+import com.xiong.dandan.wudd.libs.tools.CortyTool;
+import com.xiong.dandan.wudd.libs.utils.Base64Utils;
+import com.xiong.dandan.wudd.net.response.CommonResponse;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
@@ -22,6 +28,7 @@ import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
+ * api
  * Created by xionglh on 2017/2/21.
  */
 public abstract class Api {
@@ -39,6 +46,7 @@ public abstract class Api {
 
     private static Retrofit retrofit;
 
+
     public static ApiService getService() {
         if (service == null) {
             service = getRetrofit().create(ApiService.class);
@@ -47,6 +55,24 @@ public abstract class Api {
     }
 
 
+    private static Map<String, String> getHttpHeader() {
+        Map<String, String> header = new HashMap<>();
+        String encodedAuth = "Basic " + Base64Utils.encode((Config.APP_NAME + ":" + Config.APP_PWD).getBytes());
+        String service = "slb";
+        String serviceTime = String.valueOf((new Date()).getTime());
+        String sign = service + serviceTime + Config.APP_SOURCE + Config.APP_SEEDS;
+        header.put("AUTHORIZATION", encodedAuth);
+        header.put("accept", "application/json");
+        header.put("Connection", "Keep-Alive");
+        header.put("appSource", Config.APP_SOURCE);
+        header.put("service", service);
+        header.put("serviceTime", serviceTime);
+        header.put("magicnum", "0xSL001");
+        header.put("sign", CortyTool.encryptMD5(sign));
+        header.put("Accept-Encoding", "gzip");
+        return header;
+    }
+
     /**
      * 拦截器  给所有的请求添加消息头
      */
@@ -54,6 +80,10 @@ public abstract class Api {
         @Override
         public okhttp3.Response intercept(Chain chain) throws IOException {
             Request.Builder builder = chain.request().newBuilder();
+            Map<String, String> heads = getHttpHeader();
+            for (String key : heads.keySet()) {
+                builder.addHeader(key, heads.get(key));
+            }
             Request request = builder.addHeader(HEADER_X_HB_Client_Type, FROM_ANDROID).build();
             return chain.proceed(request);
         }
@@ -66,7 +96,7 @@ public abstract class Api {
             HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
             //设置 请求的缓存
-            File cacheFile = new File(AppAplicition.genInstance().getCacheDir(), "cache");
+            File cacheFile = new File(AppMyAplicition.genInstance().getCacheDir(), "cache");
             Cache cache = new Cache(cacheFile, 1024 * 1024 * 50); //50Mb
             OkHttpClient client = new OkHttpClient.Builder().connectTimeout(15, TimeUnit.SECONDS)
                     .addInterceptor(interceptor).addInterceptor(mInterceptor).cache(cache).build();
@@ -78,17 +108,18 @@ public abstract class Api {
 
     /**
      * 对 Observable<T> 做统一的处理，处理了线程调度、分割返回结果等操作组合了起来
+     * protected <T> Observable.Transformer<Response<T>, T> applySchedulers()
      *
      * @param responseObservable
      * @param <T>
      * @return
      */
-    protected <T> Observable<T> applySchedulers(Observable<T> responseObservable) {
+    protected <T> Observable applySchedulers(Observable<CommonResponse<T>> responseObservable) {
         return responseObservable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .flatMap(new Func1<T, Observable<T>>() {
+                .flatMap(new Func1<CommonResponse<T>, Observable<T>>() {
                     @Override
-                    public Observable<T> call(T tResponse) {
+                    public Observable<T> call(CommonResponse<T> tResponse) {
                         return flatResponse(tResponse);
                     }
                 })
@@ -101,17 +132,20 @@ public abstract class Api {
      * @param response
      * @return
      */
-    public <T> Observable<T> flatResponse(final T response) {
+    public <T> Observable<T> flatResponse(final CommonResponse<T> response) {
         return Observable.create(new Observable.OnSubscribe<T>() {
             @Override
             public void call(Subscriber<? super T> subscriber) {
-                if (response != null) {
-                    if (!subscriber.isUnsubscribed()) {
-                        subscriber.onNext(response);
+                if (response != null && !subscriber.isUnsubscribed()) {
+                    CommonResponse<T>.Result<T> result = response.getResult();
+                    if (!result.isError()||result.isSuccess()) {
+                        subscriber.onNext(result.getData());
+                    } else {
+                        AppMyAplicition.genInstance().showToast(result.getMessage());
                     }
                 } else {
                     if (!subscriber.isUnsubscribed()) {
-                        subscriber.onError(new APIException("自定义异常类型", "解析json错误或者服务器返回空的json"));
+                        subscriber.onError(new APIException("0", "解析json错误或者服务器返回空的json"));
                     }
                     return;
                 }

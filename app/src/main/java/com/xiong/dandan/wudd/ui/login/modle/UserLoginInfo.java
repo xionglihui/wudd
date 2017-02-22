@@ -1,11 +1,11 @@
 package com.xiong.dandan.wudd.ui.login.modle;
 
-import com.xiong.dandan.wudd.net.response.BaseVolleyResponse;
+import com.xiong.dandan.wudd.net.response.CommonResponse;
 
 /**
  * Created by xionglh on 2017/1/4.
  */
-public class UserInfo extends BaseVolleyResponse {
+public class UserLoginInfo extends CommonResponse {
 
     private String name;
     private String pwd;

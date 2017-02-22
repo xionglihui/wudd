@@ -7,18 +7,26 @@ import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.xiong.dandan.wudd.AppAplicition;
+import com.google.gson.Gson;
+import com.xiong.dandan.wudd.AppMyAplicition;
 import com.xiong.dandan.wudd.common.ActivityPageManager;
 import com.xiong.dandan.wudd.common.dialog.CustomProgressDialog;
-import com.xiong.dandan.wudd.libs.utils.SharedPreferencesKey;
-import com.xiong.dandan.wudd.libs.utils.SharedPreferencesUtil;
-import com.xiong.dandan.wudd.net.request.BaseVolleyRequest;
+import com.xiong.dandan.wudd.net.api.Api;
+import com.xiong.dandan.wudd.net.api.ApiWrapper;
+import com.xiong.dandan.wudd.net.api.RequestCallBack;
+import com.xiong.dandan.wudd.net.response.HttpExceptionBean;
 import com.xiong.dandan.wudd.ui.common.CommonWebViewActivity;
 import com.xiong.dandan.wudd.ui.common.ImageFetchActivity;
 
+import java.io.IOException;
+
+import okhttp3.ResponseBody;
+import retrofit2.HttpException;
+import rx.Subscriber;
+import rx.subscriptions.CompositeSubscription;
+
 public class BaseActivity extends FragmentActivity {
 
-    private static final String SAVE_USER_INFO_KEY = "SAVE_USER_INFO_KEY";
 
     public static final String SKIP_ACTIVITY_WHERE_FROM = "fromWhere";
 
@@ -31,7 +39,15 @@ public class BaseActivity extends FragmentActivity {
      */
     protected View mContentView;
 
-    public String TAG;
+    /**
+     * 使用CompositeSubscription来持有所有的Subscriptions
+     */
+    protected CompositeSubscription mCompositeSubscription;
+    /**
+     * Api类的包装 对象
+     */
+    protected ApiWrapper mApiWrapper;
+
     /**
      * 请求服务器加载框
      */
@@ -40,9 +56,8 @@ public class BaseActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        TAG = this.getLocalClassName();
         mProgressDialog = new CustomProgressDialog(this, false, false);
-        AppAplicition.genInstance().mTotalActivity.add(this);
+        AppMyAplicition.genInstance().mTotalActivity.add(this);
     }
 
     @Override
@@ -57,7 +72,81 @@ public class BaseActivity extends FragmentActivity {
         mContentView = view;
         //初始化页面
         init();
+        initApi();
     }
+
+    /**
+     * 初始化 Api  更具需要初始化
+     */
+    public void initApi() {
+        mCompositeSubscription = new CompositeSubscription();
+        // 构建 ApiWrapper 对象
+        mApiWrapper = new ApiWrapper();
+    }
+
+    public ApiWrapper getApiWrapper() {
+        if (mApiWrapper == null) {
+            mApiWrapper = new ApiWrapper();
+        }
+        return mApiWrapper;
+    }
+
+    public CompositeSubscription getCompositeSubscription() {
+        if (mCompositeSubscription == null) {
+            mCompositeSubscription = new CompositeSubscription();
+        }
+        return mCompositeSubscription;
+    }
+
+    /**
+     * 创建观察者  这里对观察着 过滤一次，过滤出我们想要的信息，错误的信息toast
+     *
+     * @param requestCallBack
+     * @param <T>
+     * @return
+     */
+    protected <T> Subscriber newMySubscriber(final RequestCallBack requestCallBack) {
+        return new Subscriber<T>() {
+            @Override
+            public void onCompleted() {
+                mProgressDialog.show();
+                requestCallBack.onCompleted();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                if (e instanceof Api.APIException) {
+                    Api.APIException exception = (Api.APIException) e;
+                    AppMyAplicition.genInstance().showToast(exception.message);
+                } else if (e instanceof HttpException) {
+
+                    ResponseBody body = ((HttpException) e).response().errorBody();
+                    try {
+                        String json = body.string();
+                        Gson gson = new Gson();
+                        HttpExceptionBean mHttpExceptionBean = gson.fromJson(json, HttpExceptionBean.class);
+                        if (mHttpExceptionBean != null && mHttpExceptionBean.getMessage() != null) {
+                            AppMyAplicition.genInstance().showToast(mHttpExceptionBean.getMessage());
+                            requestCallBack.onError(mHttpExceptionBean);
+                        }
+                    } catch (IOException IOe) {
+                        IOe.printStackTrace();
+                    }
+
+                }
+                mProgressDialog.dismiss();
+            }
+
+            @Override
+            public void onNext(T t) {
+                if (!mCompositeSubscription.isUnsubscribed()) {
+                    requestCallBack.onNext(t);
+                }
+            }
+
+        };
+    }
+
 
     /**
      * 初始化页面
@@ -120,8 +209,9 @@ public class BaseActivity extends FragmentActivity {
         if (mProgressDialog.isShowing())
             mProgressDialog.dismiss();
         mProgressDialog = null;
-        AppAplicition.genInstance().mTotalActivity.remove(this);
-        AppAplicition.genQueue().cancelAll(TAG);
+        if (mCompositeSubscription != null) {
+            mCompositeSubscription.unsubscribe();
+        }
     }
 
 
@@ -178,11 +268,6 @@ public class BaseActivity extends FragmentActivity {
         skipAct(intent);
     }
 
-
-    public void loginOut() {
-        BaseVolleyRequest.SESSION_ID = "";
-        SharedPreferencesUtil.cleanStringValue(this, SharedPreferencesKey.LOGIN_SESSION_ID);
-    }
 
 
     @Override
