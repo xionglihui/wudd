@@ -7,25 +7,23 @@ import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.google.gson.Gson;
 import com.xiong.dandan.wudd.AppMyAplicition;
 import com.xiong.dandan.wudd.common.ActivityPageManager;
 import com.xiong.dandan.wudd.common.dialog.CustomProgressDialog;
-import com.xiong.dandan.wudd.net.api.Api;
+import com.xiong.dandan.wudd.net.api.APIException;
 import com.xiong.dandan.wudd.net.api.ApiWrapper;
 import com.xiong.dandan.wudd.net.api.RequestCallBack;
-import com.xiong.dandan.wudd.net.response.HttpExceptionBean;
 import com.xiong.dandan.wudd.ui.common.CommonWebViewActivity;
 import com.xiong.dandan.wudd.ui.common.ImageFetchActivity;
 
-import java.io.IOException;
+import java.net.ConnectException;
+import java.net.SocketTimeoutException;
 
-import okhttp3.ResponseBody;
 import retrofit2.HttpException;
 import rx.Subscriber;
 import rx.subscriptions.CompositeSubscription;
 
-public class BaseActivity extends FragmentActivity {
+public abstract class BaseActivity extends FragmentActivity {
 
 
     public static final String SKIP_ACTIVITY_WHERE_FROM = "fromWhere";
@@ -57,7 +55,7 @@ public class BaseActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mProgressDialog = new CustomProgressDialog(this, false, false);
-        AppMyAplicition.genInstance().mTotalActivity.add(this);
+        ActivityPageManager.getInstance().addActivity(this);
     }
 
     @Override
@@ -74,13 +72,19 @@ public class BaseActivity extends FragmentActivity {
         init();
         initApi();
     }
+    /**
+     * 初始化页面
+     */
+    public void init() {
+        initFromWhere();
+    }
 
+    protected abstract   void initViews();
     /**
      * 初始化 Api  更具需要初始化
      */
     public void initApi() {
         mCompositeSubscription = new CompositeSubscription();
-        // 构建 ApiWrapper 对象
         mApiWrapper = new ApiWrapper();
     }
 
@@ -105,34 +109,27 @@ public class BaseActivity extends FragmentActivity {
      * @param <T>
      * @return
      */
+    @SuppressWarnings("unchecked")
     protected <T> Subscriber newMySubscriber(final RequestCallBack requestCallBack) {
         return new Subscriber<T>() {
             @Override
             public void onCompleted() {
-                mProgressDialog.show();
+                mProgressDialog.dismiss();
                 requestCallBack.onCompleted();
             }
 
             @Override
             public void onError(Throwable e) {
-                if (e instanceof Api.APIException) {
-                    Api.APIException exception = (Api.APIException) e;
+                if (e instanceof APIException) {
+                    APIException exception = (APIException) e;
                     AppMyAplicition.genInstance().showToast(exception.message);
-                } else if (e instanceof HttpException) {
-
-                    ResponseBody body = ((HttpException) e).response().errorBody();
-                    try {
-                        String json = body.string();
-                        Gson gson = new Gson();
-                        HttpExceptionBean mHttpExceptionBean = gson.fromJson(json, HttpExceptionBean.class);
-                        if (mHttpExceptionBean != null && mHttpExceptionBean.getMessage() != null) {
-                            AppMyAplicition.genInstance().showToast(mHttpExceptionBean.getMessage());
-                            requestCallBack.onError(mHttpExceptionBean);
-                        }
-                    } catch (IOException IOe) {
-                        IOe.printStackTrace();
-                    }
-
+                    requestCallBack.onError(exception);
+                }  else if (e instanceof SocketTimeoutException) {
+                    AppMyAplicition.genInstance().showToast(e.getMessage());
+                } else if (e instanceof ConnectException) {
+                    AppMyAplicition.genInstance().showToast(e.getMessage());
+                }else if (e instanceof HttpException) {
+                    AppMyAplicition.genInstance().showToast(((HttpException) e).message());
                 }
                 mProgressDialog.dismiss();
             }
@@ -148,12 +145,7 @@ public class BaseActivity extends FragmentActivity {
     }
 
 
-    /**
-     * 初始化页面
-     */
-    public void init() {
-        initFromWhere();
-    }
+
 
 
     protected void initFromWhere() {

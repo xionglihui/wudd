@@ -1,12 +1,11 @@
 package com.xiong.dandan.wudd.net.response;
 
 
-import com.xiong.dandan.wudd.entity.BaseEntity;
-
 /**
- * Created by wangyy on 2015/7/16.
+ *
+ * @param <T>
  */
-public class CommonResponse<T> extends BaseEntity {
+public class CommonResponse<T>  {
 
     private Result<T> result;
 
@@ -70,9 +69,6 @@ public class CommonResponse<T> extends BaseEntity {
             this.code = code;
         }
 
-        public BaseEntity saveInfo(CommonResponse response) {
-            return response;
-        }
     }
 
 }

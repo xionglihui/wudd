@@ -2,6 +2,7 @@ package com.xiong.dandan.wudd.net.api;
 
 import com.xiong.dandan.wudd.AppMyAplicition;
 import com.xiong.dandan.wudd.Config;
+import com.xiong.dandan.wudd.R;
 import com.xiong.dandan.wudd.libs.tools.CortyTool;
 import com.xiong.dandan.wudd.libs.utils.Base64Utils;
 import com.xiong.dandan.wudd.net.response.CommonResponse;
@@ -24,7 +25,6 @@ import retrofit2.RxJavaCallAdapterFactory;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -90,9 +90,10 @@ public abstract class Api {
     };
 
 
+
     private static Retrofit getRetrofit() {
         if (retrofit == null) {
-            // log拦截器  打印所有的log
+            //  打印所有的log
             HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
             //设置 请求的缓存
@@ -100,8 +101,8 @@ public abstract class Api {
             Cache cache = new Cache(cacheFile, 1024 * 1024 * 50); //50Mb
             OkHttpClient client = new OkHttpClient.Builder().connectTimeout(15, TimeUnit.SECONDS)
                     .addInterceptor(interceptor).addInterceptor(mInterceptor).cache(cache).build();
-            retrofit = new Retrofit.Builder().client(client).baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create())
-                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create()).build();
+                retrofit = new Retrofit.Builder().client(client).baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create())
+                        .addCallAdapterFactory(RxJavaCallAdapterFactory.create()).build();
         }
         return retrofit;
     }
@@ -117,13 +118,7 @@ public abstract class Api {
     protected <T> Observable applySchedulers(Observable<CommonResponse<T>> responseObservable) {
         return responseObservable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .flatMap(new Func1<CommonResponse<T>, Observable<T>>() {
-                    @Override
-                    public Observable<T> call(CommonResponse<T> tResponse) {
-                        return flatResponse(tResponse);
-                    }
-                })
-                ;
+                .flatMap((CommonResponse<T> t)-> flatResponse(t));
     }
 
     /**
@@ -138,14 +133,14 @@ public abstract class Api {
             public void call(Subscriber<? super T> subscriber) {
                 if (response != null && !subscriber.isUnsubscribed()) {
                     CommonResponse<T>.Result<T> result = response.getResult();
-                    if (!result.isError()||result.isSuccess()) {
+                    if (!result.isError() || result.isSuccess()) {
                         subscriber.onNext(result.getData());
                     } else {
-                        AppMyAplicition.genInstance().showToast(result.getMessage());
+                        subscriber.onError(new APIException(result.getCode(),result.getMessage()));//业务错误
                     }
                 } else {
                     if (!subscriber.isUnsubscribed()) {
-                        subscriber.onError(new APIException("0", "解析json错误或者服务器返回空的json"));
+                        subscriber.onError(new APIException("0",AppMyAplicition.genInstance().getString(R.string.exception_json_error)));
                     }
                     return;
                 }
@@ -154,27 +149,11 @@ public abstract class Api {
                 }
 
             }
+
         });
     }
 
-    /**
-     *
-     */
-    public static class APIException extends Exception {
-        public String code;
-        public String message;
 
-        public APIException(String code, String message) {
-            this.code = code;
-            this.message = message;
-        }
-
-        @Override
-        public String getMessage() {
-            return message;
-        }
-
-    }
 
 
 }

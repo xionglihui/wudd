@@ -2,17 +2,21 @@ package com.xiong.dandan.wudd.ui.login.ui;
 
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
-import android.view.View;
+import android.widget.Button;
 
+import com.jakewharton.rxbinding.view.RxView;
 import com.xiong.dandan.wudd.R;
 import com.xiong.dandan.wudd.common.base.BaseMVPActivity;
+import com.xiong.dandan.wudd.libs.utils.StrUtils;
 import com.xiong.dandan.wudd.ui.login.presenter.LoginPresenterImp;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * login
  * Created by xionglh on 2017/1/4.
  */
-public class LoginActivity extends BaseMVPActivity<ILoginView,LoginPresenterImp> implements ILoginView ,View.OnClickListener{
+public class LoginActivity extends BaseMVPActivity<ILoginView,LoginPresenterImp> implements ILoginView{
 
 
     private TextInputEditText mTxtName, mTxtPwd;
@@ -21,9 +25,32 @@ public class LoginActivity extends BaseMVPActivity<ILoginView,LoginPresenterImp>
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+    }
+
+
+    @Override
+    protected void initViews() {
         mTxtName = (TextInputEditText) findViewById(R.id.txt_login_phone);
         mTxtPwd = (TextInputEditText) findViewById(R.id.txt_login_pwd);
-        findViewById(R.id.btn_login_commint).setOnClickListener(this);
+        Button  button=(Button)findViewById(R.id.btn_login_commint);
+        RxView.clicks(button).throttleFirst(2000, TimeUnit.MILLISECONDS).subscribe(t->{
+            onClickLogin();
+        });
+
+    }
+
+    private void onClickLogin(){
+        String name = mTxtPwd.getText().toString();
+        String pwd = mTxtPwd.getText().toString();
+        if (StrUtils.isEmpty(name)) {
+            mTxtName.setError("帐号不能为为空");
+            return;
+        }
+        if (StrUtils.isEmpty(pwd)) {
+            mTxtName.setError("密码不能为空");
+            return;
+        }
+        mPersenter.login(name,pwd);
     }
 
     @Override
@@ -54,7 +81,7 @@ public class LoginActivity extends BaseMVPActivity<ILoginView,LoginPresenterImp>
 
     @Override
     public void errorLoginNameInfo(String errorInfo) {
-        mTxtName.setError(errorInfo);
+
     }
 
     @Override
@@ -74,12 +101,5 @@ public class LoginActivity extends BaseMVPActivity<ILoginView,LoginPresenterImp>
 
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.btn_login_commint:
-                mPersenter.login();
-                break;
-        }
-    }
+
 }

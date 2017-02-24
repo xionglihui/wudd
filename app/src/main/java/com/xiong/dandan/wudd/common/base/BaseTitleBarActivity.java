@@ -33,12 +33,7 @@ public class BaseTitleBarActivity extends BaseActivity {
     }
 
     @Override
-    public void setContentView(View view, LayoutParams params) {
-        super.setContentView(view, params);
-        initTitles();
-    }
-
-    private void initTitles() {
+    protected void initViews() {
         mRlViewTitile=(RelativeLayout)findViewById(R.id.title_bar_layout);
         mTextViewTitle = (TextView) findViewById(R.id.title_bar_center_text_title);
         mTextViewLeft = (TextView) findViewById(R.id.title_bar_left_button_back);
@@ -46,6 +41,13 @@ public class BaseTitleBarActivity extends BaseActivity {
         hideLeftButton();
         hideRightButton();
     }
+
+    @Override
+    public void setContentView(View view, LayoutParams params) {
+        super.setContentView(view, params);
+        initViews();
+    }
+
 
     /**
      * 重置 隐藏 左键和右键

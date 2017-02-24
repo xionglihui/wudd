@@ -1,16 +1,14 @@
 package com.xiong.dandan.wudd.common.base;
 
-import com.google.gson.Gson;
 import com.xiong.dandan.wudd.AppMyAplicition;
-import com.xiong.dandan.wudd.net.api.Api;
+import com.xiong.dandan.wudd.net.api.APIException;
 import com.xiong.dandan.wudd.net.api.ApiWrapper;
 import com.xiong.dandan.wudd.net.api.RequestCallBack;
-import com.xiong.dandan.wudd.net.response.HttpExceptionBean;
 
-import java.io.IOException;
 import java.lang.ref.WeakReference;
+import java.net.ConnectException;
+import java.net.SocketTimeoutException;
 
-import okhttp3.ResponseBody;
 import retrofit2.HttpException;
 import rx.Subscriber;
 import rx.subscriptions.CompositeSubscription;
@@ -33,12 +31,12 @@ public abstract class BaseMVPPersenter<T> {
 
 
     /**
-     * 创建观察者  这里对观察着 过滤一次，过滤出我们想要的信息，错误的信息toast
      *
      * @param requestCallBack
      * @param <T>
      * @return
      */
+    @SuppressWarnings("unchecked")
     protected <T> Subscriber newMySubscriber(final RequestCallBack requestCallBack) {
         return new Subscriber<T>() {
             @Override
@@ -48,23 +46,16 @@ public abstract class BaseMVPPersenter<T> {
 
             @Override
             public void onError(Throwable e) {
-                if (e instanceof Api.APIException) {
-                    Api.APIException exception = (Api.APIException) e;
+                if (e instanceof APIException) {
+                    APIException exception = (APIException) e;
                     AppMyAplicition.genInstance().showToast(exception.message);
-                } else if (e instanceof HttpException) {
-                    ResponseBody body = ((HttpException) e).response().errorBody();
-                    try {
-                        String json = body.string();
-                        Gson gson = new Gson();
-                        HttpExceptionBean mHttpExceptionBean = gson.fromJson(json, HttpExceptionBean.class);
-                        if (mHttpExceptionBean != null && mHttpExceptionBean.getMessage() != null) {
-                            AppMyAplicition.genInstance().showToast(mHttpExceptionBean.getMessage());
-                            requestCallBack.onError(mHttpExceptionBean);
-                        }
-                    } catch (IOException IOe) {
-                        IOe.printStackTrace();
-                    }
-
+                    requestCallBack.onError(exception);//业务错误
+                }  else if (e instanceof SocketTimeoutException) {
+                    AppMyAplicition.genInstance().showToast(e.getMessage());
+                } else if (e instanceof ConnectException) {
+                    AppMyAplicition.genInstance().showToast(e.getMessage());
+                }else if (e instanceof HttpException) {
+                    AppMyAplicition.genInstance().showToast(((HttpException) e).message());
                 }
             }
 

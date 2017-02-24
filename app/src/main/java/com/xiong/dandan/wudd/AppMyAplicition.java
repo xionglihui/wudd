@@ -2,15 +2,10 @@ package com.xiong.dandan.wudd;
 
 import android.os.Environment;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
-import com.xiong.dandan.wudd.common.base.BaseActivity;
 import com.xiong.dandan.wudd.common.base.BaseApplication;
 import com.xiong.dandan.wudd.libs.GlobalConstants;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by xionglh on 2016/9/21.
@@ -19,15 +14,9 @@ public class AppMyAplicition extends BaseApplication {
 
 
     private static AppMyAplicition mInstance;
-    private static RequestQueue mQueue;
-    public List<BaseActivity> mTotalActivity=new ArrayList<>();
 
     public static AppMyAplicition genInstance() {
         return mInstance;
-    }
-
-    public static RequestQueue genQueue() {
-        return mQueue;
     }
 
 
@@ -40,7 +29,6 @@ public class AppMyAplicition extends BaseApplication {
 
     private void initDatas() {
         mInstance = this;
-        mQueue = Volley.newRequestQueue(this);
     }
 
     public static void createPathForPictures() {

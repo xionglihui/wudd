@@ -19,6 +19,7 @@
             android:id="@+id/txt_login_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="13711111111"
             android:textColor="@color/black_normal_text"
             android:textSize="16sp" />
     </android.support.design.widget.TextInputLayout>
@@ -35,6 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black_normal_text"
+            android:text="1111qqqq"
             android:textSize="16sp" />
     </android.support.design.widget.TextInputLayout>
 
