@@ -5,7 +5,6 @@ import com.xiong.dandan.wudd.libs.utils.GJsonUtil;
 import com.xiong.dandan.wudd.libs.utils.SharedPreferencesUtil;
 
 import rx.Observable;
-import rx.functions.Func1;
 
 /**
  * Created by xionglh on 2017/2/23.
@@ -22,12 +21,7 @@ public class BaseModle<T> implements IBaseModle<T> {
     @Override
     public Observable<T> getDataInfo(final Class<?> cl) {
         String cacheInfoStr = SharedPreferencesUtil.getStringValue(AppMyAplicition.genInstance(), BaseModle.this.getClass().getName());
-        return Observable.just(cacheInfoStr).map(new Func1<String, T>() {
-            @Override
-            public T call(String s) {
-                return GJsonUtil.toObject(s, cl);
-            }
-        });
+        return Observable.just(cacheInfoStr).map(t->GJsonUtil.toObject(t, cl));
     }
 
 

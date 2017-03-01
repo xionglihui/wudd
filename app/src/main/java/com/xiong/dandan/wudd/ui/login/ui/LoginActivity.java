@@ -40,7 +40,7 @@ public class LoginActivity extends BaseMVPActivity<ILoginView,LoginPresenterImp>
     }
 
     private void onClickLogin(){
-        String name = mTxtPwd.getText().toString();
+        String name = mTxtName.getText().toString();
         String pwd = mTxtPwd.getText().toString();
         if (StrUtils.isEmpty(name)) {
             mTxtName.setError("帐号不能为为空");
