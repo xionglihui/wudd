@@ -6,8 +6,9 @@ import android.widget.Button;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.xiong.dandan.wudd.R;
-import com.xiong.dandan.wudd.common.base.BaseMVPActivity;
+import com.xiong.dandan.wudd.common.base.BaseCommonActivity;
 import com.xiong.dandan.wudd.libs.utils.StrUtils;
+import com.xiong.dandan.wudd.ui.login.contract.ILoginContract;
 import com.xiong.dandan.wudd.ui.login.presenter.LoginPresenterImp;
 
 import java.util.concurrent.TimeUnit;
@@ -16,7 +17,7 @@ import java.util.concurrent.TimeUnit;
  * login
  * Created by xionglh on 2017/1/4.
  */
-public class LoginActivity extends BaseMVPActivity<ILoginView,LoginPresenterImp> implements ILoginView{
+public class LoginActivity extends BaseCommonActivity<ILoginContract.View,LoginPresenterImp> implements ILoginContract.View{
 
 
     private TextInputEditText mTxtName, mTxtPwd;

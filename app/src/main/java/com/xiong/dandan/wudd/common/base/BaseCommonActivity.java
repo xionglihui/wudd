@@ -5,7 +5,7 @@ import android.os.Bundle;
 /**
  * Created by xionglh on 2017/2/7.
  */
-public abstract class BaseMVPActivity<V , T extends  BaseMVPPersenter<V>> extends BaseTitleBarActivity {
+public abstract class BaseCommonActivity<V extends IBaseView , T extends BaseCommonPersenter<V>> extends BaseTitleBarActivity {
 
     protected T mPersenter;
 

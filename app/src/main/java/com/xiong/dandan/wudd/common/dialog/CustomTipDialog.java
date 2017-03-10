@@ -121,12 +121,9 @@ public class CustomTipDialog extends Dialog {
             if (positiveButtonText != null) {
                 positive.setText(positiveButtonText);
                 if (positiveButtonClickListener != null) {
-                    positive.setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View v) {
-                            positiveButtonClickListener.onClick(dialog,
-                                    DialogInterface.BUTTON_POSITIVE);
-                        }
-                    });
+                    positive.setOnClickListener(t ->
+                            positiveButtonClickListener.onClick(dialog, DialogInterface.BUTTON_POSITIVE)
+                    );
                 }
             } else {
                 positive.setVisibility(View.GONE);
@@ -137,18 +134,11 @@ public class CustomTipDialog extends Dialog {
             if (negativeButtonText != null) {
                 cancel.setText(negativeButtonText);
                 if (negativeButtonClickListener != null) {
-                    cancel.setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View v) {
-                            negativeButtonClickListener.onClick(dialog,
-                                    DialogInterface.BUTTON_NEGATIVE);
-                        }
-                    });
+                    cancel.setOnClickListener(t ->
+                            negativeButtonClickListener.onClick(dialog, DialogInterface.BUTTON_NEGATIVE)
+                    );
                 } else {
-                    cancel.setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View v) {
-                            dialog.dismiss();
-                        }
-                    });
+                    cancel.setOnClickListener(t -> dialog.dismiss());
                 }
             } else {
                 cancel.setVisibility(View.GONE);

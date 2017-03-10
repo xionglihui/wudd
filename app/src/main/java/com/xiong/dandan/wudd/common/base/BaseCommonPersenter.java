@@ -16,7 +16,7 @@ import rx.subscriptions.CompositeSubscription;
 /**
  * Created by xionglh on 2017/2/7.
  */
-public abstract class BaseMVPPersenter<T> {
+public abstract class BaseCommonPersenter<T>  {
 
     protected WeakReference<T> mViewRef;
     protected ApiWrapper mApiWrapper;

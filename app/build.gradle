@@ -12,8 +12,8 @@ android {
         versionCode 1
         versionName "1.0"
     }
-    dataBinding{
-        enabled=true
+    dataBinding {
+        enabled = true
     }
     signingConfigs {
         myConfig {
@@ -23,6 +23,8 @@ android {
             keyPassword "123456"
         }
     }
+
+
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -39,11 +41,30 @@ android {
             signingConfig signingConfigs.myConfig
         }
     }
+
+    productFlavors {
+        pcwangzhan {
+            manifestPlaceholders = [CHANNEL_NAME: "PC网站"]
+        }
+        yingyongbao {
+            manifestPlaceholders = [CHANNEL_NAME: "应用宝"]
+        }
+        qihu360 {
+            manifestPlaceholders = [CHANNEL_NAME: "360应用市场"]
+        }
+
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
+    compile 'junit:junit:4.12'
+    compile 'com.android.support.test:runner:0.5'
+    compile 'com.android.support.test:rules:0.5'
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+
     compile 'com.android.support:appcompat-v7:23.2.0'
     compile 'com.android.support:design:23.2.0'
     compile 'com.android.support:recyclerview-v7:23.2.0'
@@ -52,8 +73,10 @@ dependencies {
     compile 'io.reactivex:rxandroid:1.1.0'
     compile 'io.reactivex:rxjava:1.1.0'
     compile 'com.jakewharton.rxbinding:rxbinding:0.1.0'
-    compile 'com.squareup.retrofit2:retrofit:2.0.0-beta3'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0-beta3'
-    compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta3'
+    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    compile 'org.greenrobot:eventbus:3.0.0'
 
 }
