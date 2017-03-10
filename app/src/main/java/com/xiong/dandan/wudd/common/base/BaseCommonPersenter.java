@@ -9,7 +9,7 @@ import java.lang.ref.WeakReference;
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 
-import retrofit2.HttpException;
+import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
 import rx.subscriptions.CompositeSubscription;
 

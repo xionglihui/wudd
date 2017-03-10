@@ -19,7 +19,7 @@ import com.xiong.dandan.wudd.ui.common.ImageFetchActivity;
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 
-import retrofit2.HttpException;
+import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
 import rx.subscriptions.CompositeSubscription;
 
