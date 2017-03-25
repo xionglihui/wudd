@@ -6,9 +6,11 @@
 
     <include layout="@layout/layout_titlebar" />
 
-    <WebView
+
+    <com.xiong.dandan.wudd.view.CustomWebView
         android:id="@+id/wb_products_loding"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
 
 </LinearLayout>

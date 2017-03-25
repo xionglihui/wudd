@@ -13,7 +13,7 @@ import com.xiong.dandan.wudd.common.dialog.CustomProgressDialog;
 import com.xiong.dandan.wudd.net.api.APIException;
 import com.xiong.dandan.wudd.net.api.ApiWrapper;
 import com.xiong.dandan.wudd.net.api.RequestCallBack;
-import com.xiong.dandan.wudd.ui.common.CommonWebViewActivity;
+import com.xiong.dandan.wudd.common.webview.CustomWebViewActivity;
 import com.xiong.dandan.wudd.ui.common.ImageFetchActivity;
 
 import java.net.ConnectException;
@@ -254,9 +254,9 @@ public abstract class BaseActivity extends FragmentActivity {
     }
 
     public void gotoWebViewActivity(String title, String url) {
-        Intent intent = new Intent(this, CommonWebViewActivity.class);
-        intent.putExtra(CommonWebViewActivity.WEB_SHOW_TITLE_TAG, title);
-        intent.putExtra(CommonWebViewActivity.WEB_SHOW_URL_TAG, url);
+        Intent intent = new Intent(this, CustomWebViewActivity.class);
+        intent.putExtra(CustomWebViewActivity.WEB_SHOW_TITLE_TAG, title);
+        intent.putExtra(CustomWebViewActivity.WEB_SHOW_URL_TAG, url);
         skipAct(intent);
     }
 
