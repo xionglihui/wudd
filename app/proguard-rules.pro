@@ -49,3 +49,16 @@
 
 -keep class com.xiong.dandan.wudd.net.response.**{*;}
 -keep class com.xiong.dandan.wudd.common.entiy.**{*;}
+
+#butterknife
+-keep class butterknife.** { *; }
+-dontwarn butterknife.internal.**
+-keep class **$$ViewBinder { *; }
+
+-keepclasseswithmembernames class * {
+    @butterknife.* <fields>;
+}
+
+-keepclasseswithmembernames class * {
+    @butterknife.* <methods>;
+}

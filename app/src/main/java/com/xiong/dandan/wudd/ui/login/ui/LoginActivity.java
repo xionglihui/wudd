@@ -13,6 +13,9 @@ import com.xiong.dandan.wudd.ui.login.presenter.LoginPresenterImp;
 
 import java.util.concurrent.TimeUnit;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * login
  * Created by xionglh on 2017/1/4.
@@ -20,8 +23,13 @@ import java.util.concurrent.TimeUnit;
 public class LoginActivity extends BaseCommonActivity<ILoginContract.View,LoginPresenterImp> implements ILoginContract.View{
 
 
-    private TextInputEditText mTxtName, mTxtPwd;
 
+    @BindView(R.id.txt_login_phone)
+    TextInputEditText  mTxtName;
+    @BindView(R.id.txt_login_pwd)
+    TextInputEditText mTxtPwd;
+    @BindView(R.id.btn_login_commint)
+    Button     mBtnCommint;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,13 +39,10 @@ public class LoginActivity extends BaseCommonActivity<ILoginContract.View,LoginP
 
     @Override
     protected void initViews() {
-        mTxtName = (TextInputEditText) findViewById(R.id.txt_login_phone);
-        mTxtPwd = (TextInputEditText) findViewById(R.id.txt_login_pwd);
-        Button  button=(Button)findViewById(R.id.btn_login_commint);
-        RxView.clicks(button).throttleFirst(2000, TimeUnit.MILLISECONDS).subscribe(t->{
+        ButterKnife.bind(this)  ;
+        RxView.clicks(mBtnCommint).throttleFirst(2000, TimeUnit.MILLISECONDS).subscribe(t->{
             onClickLogin();
         });
-
     }
 
     private void onClickLogin(){
