@@ -9,7 +9,7 @@ android {
     defaultConfig {
         applicationId "com.xiong.dandan.wudd"
         minSdkVersion 15
-        targetSdkVersion 23
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -60,7 +60,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support:recyclerview-v7:25.3.1'
@@ -78,5 +78,6 @@ dependencies {
     compile 'cn.pedant.safewebviewbridge:library:1.4'
     compile 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-
+    compile project(':netlibrary')
+    compile project(':utilslibrary')
 }

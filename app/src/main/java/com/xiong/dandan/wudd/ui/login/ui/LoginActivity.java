@@ -2,12 +2,13 @@ package com.xiong.dandan.wudd.ui.login.ui;
 
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
+
 import android.widget.Button;
 
 import com.jakewharton.rxbinding.view.RxView;
+import com.xiong.dandan.utilslibrary.str.StrUtils;
 import com.xiong.dandan.wudd.R;
 import com.xiong.dandan.wudd.common.base.BaseCommonActivity;
-import com.xiong.dandan.wudd.libs.utils.StrUtils;
 import com.xiong.dandan.wudd.ui.login.contract.ILoginContract;
 import com.xiong.dandan.wudd.ui.login.presenter.LoginPresenterImp;
 
@@ -34,6 +35,7 @@ public class LoginActivity extends BaseCommonActivity<ILoginContract.View,LoginP
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
     }
 
 

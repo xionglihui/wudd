@@ -11,10 +11,10 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
+import com.xiong.dandan.utilslibrary.common.DensityUtils;
 import com.xiong.dandan.wudd.AppMyAplicition;
 import com.xiong.dandan.wudd.R;
 import com.xiong.dandan.wudd.common.webview.CustomHostJsScope;
-import com.xiong.dandan.wudd.libs.utils.DensityUtils;
 
 import cn.pedant.SafeWebViewBridge.InjectedChromeClient;
 

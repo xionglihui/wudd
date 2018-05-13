@@ -4,8 +4,8 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.xiong.dandan.utilslibrary.common.DensityUtils;
 import com.xiong.dandan.wudd.R;
-import com.xiong.dandan.wudd.libs.utils.DensityUtils;
 
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;

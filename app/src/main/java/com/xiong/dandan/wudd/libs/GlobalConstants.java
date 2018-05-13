@@ -13,14 +13,14 @@ public class GlobalConstants {
     }
 
     // log path
-    public static final String PATH_LOG = "/shanlin/wealth/log/";
+    public static final String PATH_LOG = "/wudandan/log/";
     public static final String LOG_FILE_DIR = Environment
             .getExternalStorageDirectory() + PATH_LOG;
-    public static final String LOG_FILE_NAME = "WealthLog.log";
+    public static final String LOG_FILE_NAME = "wudandan.log";
 
     // Image path
-    public static final String PATH_TEMP = "/shanlin/wealth/images/temp/";
-    public static final String PATH_IMAGE_CACHE = "/shanlin/wealth/images/cache/";
+    public static final String PATH_TEMP = "/shanlin/wudandan/images/temp/";
+    public static final String PATH_IMAGE_CACHE = "/shanlin/wudandan/images/cache/";
     public static final String IMAGE_CAMERA_NAME = "tmp_camera.jpg";
     public static final Uri IMAGE_CAMERA_URI = Uri.fromFile(new File(
             Environment.getExternalStorageDirectory() + PATH_TEMP,

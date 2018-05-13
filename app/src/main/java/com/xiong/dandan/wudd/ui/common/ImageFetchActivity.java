@@ -9,9 +9,9 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.Window;
 
+import com.xiong.dandan.utilslibrary.file.FileUtil;
 import com.xiong.dandan.wudd.R;
 import com.xiong.dandan.wudd.libs.GlobalConstants;
-import com.xiong.dandan.wudd.libs.utils.FileUtil;
 
 import java.io.File;
 import java.io.FileNotFoundException;

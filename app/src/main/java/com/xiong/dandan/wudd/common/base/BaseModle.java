@@ -1,8 +1,9 @@
 package com.xiong.dandan.wudd.common.base;
 
+import com.xiong.dandan.utilslibrary.common.GJsonUtil;
+import com.xiong.dandan.utilslibrary.common.SharedPreferencesUtil;
 import com.xiong.dandan.wudd.AppMyAplicition;
-import com.xiong.dandan.wudd.libs.utils.GJsonUtil;
-import com.xiong.dandan.wudd.libs.utils.SharedPreferencesUtil;
+;
 
 import rx.Observable;
 

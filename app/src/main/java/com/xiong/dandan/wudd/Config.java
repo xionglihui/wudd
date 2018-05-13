@@ -1,7 +1,7 @@
 package com.xiong.dandan.wudd;
 
 
-import com.xiong.dandan.wudd.libs.tools.SystemLog;
+import com.xiong.dandan.utilslibrary.tools.SystemLog;
 
 public class Config {
 
