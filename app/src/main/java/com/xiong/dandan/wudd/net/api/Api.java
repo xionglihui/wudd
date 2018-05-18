@@ -89,9 +89,6 @@ public abstract class Api {
             return chain.proceed(request);
         }
     };
-
-
-
     private static Retrofit getRetrofit() {
         if (retrofit == null) {
             //  打印所有的log

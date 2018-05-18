@@ -21,4 +21,13 @@ public class MainActivity  extends BaseActivity  {
     protected void initViews() {
 
     }
+
+    @Override
+    public void onTrimMemory(int level) {
+        switch (level){
+            case TRIM_MEMORY_RUNNING_CRITICAL:
+                break;
+        }
+        super.onTrimMemory(level);
+    }
 }

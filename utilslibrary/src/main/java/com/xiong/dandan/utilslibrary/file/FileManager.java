@@ -2,6 +2,9 @@ package com.xiong.dandan.utilslibrary.file;
 
 import android.os.Environment;
 
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Objects;
 
 
 public class FileManager {
@@ -13,6 +16,7 @@ public class FileManager {
 			return false;
 		}
 		return true;
+
 	}
 
 	public static String getRootFilePath() {
