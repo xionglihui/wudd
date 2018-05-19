@@ -10,11 +10,11 @@ import android.view.View;
 import com.xiong.dandan.wudd.AppMyAplicition;
 import com.xiong.dandan.wudd.common.ActivityPageManager;
 import com.xiong.dandan.wudd.common.dialog.CustomProgressDialog;
-import com.xiong.dandan.wudd.net.api.APIException;
 import com.xiong.dandan.wudd.net.api.ApiWrapper;
-import com.xiong.dandan.wudd.net.api.RequestCallBack;
 import com.xiong.dandan.wudd.common.webview.CustomWebViewActivity;
 import com.xiong.dandan.wudd.ui.common.ImageFetchActivity;
+import com.xionglihui.dandan.netlibrary.net.APIException;
+import com.xionglihui.dandan.netlibrary.net.RequestCallBack;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;

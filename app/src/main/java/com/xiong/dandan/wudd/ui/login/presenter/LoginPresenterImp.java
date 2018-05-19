@@ -3,11 +3,11 @@ package com.xiong.dandan.wudd.ui.login.presenter;
 import com.xiong.dandan.utilslibrary.security.CortyTool;
 import com.xiong.dandan.wudd.AppMyAplicition;
 import com.xiong.dandan.wudd.common.base.BaseCommonPersenter;
-import com.xiong.dandan.wudd.net.api.RequestCallBack;
 import com.xiong.dandan.wudd.net.request.LoginParamsRequest;
 import com.xiong.dandan.wudd.net.response.UserInfo;
 import com.xiong.dandan.wudd.ui.login.contract.ILoginContract;
 import com.xiong.dandan.wudd.ui.login.modle.LoginModleImp;
+import com.xionglihui.dandan.netlibrary.net.RequestCallBack;
 
 import rx.Subscription;
 

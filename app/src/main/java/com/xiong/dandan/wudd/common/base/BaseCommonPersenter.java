@@ -1,9 +1,9 @@
 package com.xiong.dandan.wudd.common.base;
 
 import com.xiong.dandan.wudd.AppMyAplicition;
-import com.xiong.dandan.wudd.net.api.APIException;
 import com.xiong.dandan.wudd.net.api.ApiWrapper;
-import com.xiong.dandan.wudd.net.api.RequestCallBack;
+import com.xionglihui.dandan.netlibrary.net.APIException;
+import com.xionglihui.dandan.netlibrary.net.RequestCallBack;
 
 import java.lang.ref.WeakReference;
 import java.net.ConnectException;
