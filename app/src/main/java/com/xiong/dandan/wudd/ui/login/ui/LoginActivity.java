@@ -21,16 +21,16 @@ import butterknife.ButterKnife;
  * login
  * Created by xionglh on 2017/1/4.
  */
-public class LoginActivity extends BaseCommonActivity<ILoginContract.View,LoginPresenterImp> implements ILoginContract.View{
-
+public class LoginActivity extends BaseCommonActivity<ILoginContract.View, LoginPresenterImp> implements ILoginContract.View {
 
 
     @BindView(R.id.txt_login_phone)
-    TextInputEditText  mTxtName;
+    TextInputEditText mTxtName;
     @BindView(R.id.txt_login_pwd)
     TextInputEditText mTxtPwd;
     @BindView(R.id.btn_login_commint)
-    Button     mBtnCommint;
+    Button mBtnCommint;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,13 +41,13 @@ public class LoginActivity extends BaseCommonActivity<ILoginContract.View,LoginP
 
     @Override
     protected void initViews() {
-        ButterKnife.bind(this)  ;
-        RxView.clicks(mBtnCommint).throttleFirst(2000, TimeUnit.MILLISECONDS).subscribe(t->{
+        ButterKnife.bind(this);
+        RxView.clicks(mBtnCommint).throttleFirst(2000, TimeUnit.MILLISECONDS).subscribe(t -> {
             onClickLogin();
         });
     }
 
-    private void onClickLogin(){
+    private void onClickLogin() {
         String name = mTxtName.getText().toString();
         String pwd = mTxtPwd.getText().toString();
         if (StrUtils.isEmpty(name)) {
@@ -58,7 +58,7 @@ public class LoginActivity extends BaseCommonActivity<ILoginContract.View,LoginP
             mTxtName.setError("密码不能为空");
             return;
         }
-        mPersenter.login(name,pwd);
+        mPersenter.login(name, pwd);
     }
 
     @Override

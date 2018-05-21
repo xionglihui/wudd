@@ -26,7 +26,7 @@ public class LoginPresenterImp extends BaseCommonPersenter<ILoginContract.View> 
     @SuppressWarnings("unchecked")
     public void login(String name ,String pwd) {
 
-//        this.getView().showProgress();
+        this.getView().showProgress();
         LoginParamsRequest loginParamsRequest = new LoginParamsRequest(name, CortyTool.encryptMD5(pwd));
         Subscription subscription = mApiWrapper.getLoginUserInfo(loginParamsRequest).subscribe(newMySubscriber(mRequestCallBack));
         mCompositeSubscription.add(subscription);
