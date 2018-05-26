@@ -11,6 +11,7 @@ import android.view.Window;
 
 import com.xiong.dandan.utilslibrary.file.FileUtil;
 import com.xiong.dandan.wudd.R;
+import com.xiong.dandan.wudd.common.base.BaseActivity;
 import com.xiong.dandan.wudd.libs.GlobalConstants;
 
 import java.io.File;
@@ -19,7 +20,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 /* 拍照截图启动页面 */
-public class ImageFetchActivity extends Activity {
+public class ImageFetchActivity extends BaseActivity {
     public static final String ACTION_TYPE = "com.augmentum.ball.common.activity.ImageFetchActivity.ACTION_TYPE";
     public static final String IS_HEADER_CROP = "ImageFetchActivity.IS_HEADER_CROP";
 
@@ -36,6 +37,10 @@ public class ImageFetchActivity extends Activity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_image_fetch);
+    }
+
+    @Override
+    protected void initViews() {
         mActionType = getIntent().getIntExtra(ACTION_TYPE, ACTION_TYPE_CAMERA);
         isHeaderCrop = getIntent().getBooleanExtra(IS_HEADER_CROP, true);
 

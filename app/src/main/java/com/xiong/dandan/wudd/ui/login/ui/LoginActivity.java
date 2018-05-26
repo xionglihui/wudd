@@ -41,7 +41,6 @@ public class LoginActivity extends BaseCommonActivity<ILoginContract.View, Login
 
     @Override
     protected void initViews() {
-        ButterKnife.bind(this);
         RxView.clicks(mBtnCommint).throttleFirst(2000, TimeUnit.MILLISECONDS).subscribe(t -> {
             onClickLogin();
         });

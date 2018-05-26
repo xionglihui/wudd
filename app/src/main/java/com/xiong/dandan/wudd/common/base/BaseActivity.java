@@ -19,6 +19,8 @@ import com.xionglihui.dandan.netlibrary.net.RequestCallBack;
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
 import rx.subscriptions.CompositeSubscription;
@@ -51,6 +53,8 @@ public abstract class BaseActivity extends FragmentActivity {
      */
     public CustomProgressDialog mProgressDialog = null;
 
+    private Unbinder mUnbinder;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +66,7 @@ public abstract class BaseActivity extends FragmentActivity {
     public void setContentView(int layoutResID) {
         View view = LayoutInflater.from(this).inflate(layoutResID, null);
         setContentView(view);
+        mUnbinder = ButterKnife.bind(this);
     }
 
     @Override
@@ -72,6 +77,7 @@ public abstract class BaseActivity extends FragmentActivity {
         init();
         initApi();
     }
+
     /**
      * 初始化页面
      */
@@ -79,7 +85,8 @@ public abstract class BaseActivity extends FragmentActivity {
         initFromWhere();
     }
 
-    protected abstract   void initViews();
+    protected abstract void initViews();
+
     /**
      * 初始化 Api  更具需要初始化
      */
@@ -124,11 +131,11 @@ public abstract class BaseActivity extends FragmentActivity {
                     APIException exception = (APIException) e;
                     AppMyAplicition.genInstance().showToast(exception.message);
                     requestCallBack.onError(exception);
-                }  else if (e instanceof SocketTimeoutException) {
+                } else if (e instanceof SocketTimeoutException) {
                     AppMyAplicition.genInstance().showToast(e.getMessage());
                 } else if (e instanceof ConnectException) {
                     AppMyAplicition.genInstance().showToast(e.getMessage());
-                }else if (e instanceof HttpException) {
+                } else if (e instanceof HttpException) {
                     AppMyAplicition.genInstance().showToast(((HttpException) e).message());
                 }
                 mProgressDialog.dismiss();
@@ -143,9 +150,6 @@ public abstract class BaseActivity extends FragmentActivity {
 
         };
     }
-
-
-
 
 
     protected void initFromWhere() {
@@ -197,6 +201,7 @@ public abstract class BaseActivity extends FragmentActivity {
         super.onDestroy();
         ActivityPageManager.unbindReferences(mContentView);
         ActivityPageManager.getInstance().removeActivity(this);
+        mUnbinder.unbind();
         mContentView = null;
         if (mProgressDialog.isShowing())
             mProgressDialog.dismiss();
@@ -259,7 +264,6 @@ public abstract class BaseActivity extends FragmentActivity {
         intent.putExtra(CustomWebViewActivity.WEB_SHOW_URL_TAG, url);
         skipAct(intent);
     }
-
 
 
     @Override
