@@ -3,12 +3,15 @@ package com.xiong.dandan.wudd.ui;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.xiong.dandan.wudd.R;
 import com.xiong.dandan.wudd.common.base.BaseActivity;
 
 /**
  * Created by xionglh on 2016/9/21.
  */
+
+@Route(path = "/main/MainActivity")
 public class MainActivity  extends BaseActivity  {
 
     @Override
