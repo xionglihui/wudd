@@ -42,11 +42,6 @@ public class BaseTitleBarActivity extends BaseActivity {
         hideRightButton();
     }
 
-    @Override
-    public void setContentView(View view, LayoutParams params) {
-        super.setContentView(view, params);
-        initViews();
-    }
 
 
     /**

@@ -5,6 +5,7 @@ import android.support.design.widget.TextInputEditText;
 
 import android.widget.Button;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.jakewharton.rxbinding.view.RxView;
 import com.xiong.dandan.utilslibrary.str.StrUtils;
 import com.xiong.dandan.wudd.R;
@@ -21,6 +22,7 @@ import butterknife.ButterKnife;
  * login
  * Created by xionglh on 2017/1/4.
  */
+@Route(path = "/login/LoginActivity")
 public class LoginActivity extends BaseCommonActivity<ILoginContract.View, LoginPresenterImp> implements ILoginContract.View {
 
 
@@ -35,7 +37,6 @@ public class LoginActivity extends BaseCommonActivity<ILoginContract.View, Login
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
     }
 
 

@@ -65,8 +65,8 @@ public abstract class BaseActivity extends FragmentActivity {
     @Override
     public void setContentView(int layoutResID) {
         View view = LayoutInflater.from(this).inflate(layoutResID, null);
-        setContentView(view);
         mUnbinder = ButterKnife.bind(this);
+        setContentView(view);
     }
 
     @Override
@@ -76,6 +76,7 @@ public abstract class BaseActivity extends FragmentActivity {
         //初始化页面
         init();
         initApi();
+        initViews();
     }
 
     /**
