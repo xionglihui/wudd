@@ -9,10 +9,12 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.Window;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.xiong.dandan.utilslibrary.file.FileUtil;
 import com.xiong.dandan.wudd.R;
 import com.xiong.dandan.wudd.common.base.BaseActivity;
 import com.xiong.dandan.wudd.libs.GlobalConstants;
+import com.xiong.routerlibrary.url.ARouterPageUrl;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -20,6 +22,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 /* 拍照截图启动页面 */
+
+@Route(path = ARouterPageUrl.ACTIVITY_IMAGEFETCH)
 public class ImageFetchActivity extends BaseActivity {
     public static final String ACTION_TYPE = "com.augmentum.ball.common.activity.ImageFetchActivity.ACTION_TYPE";
     public static final String IS_HEADER_CROP = "ImageFetchActivity.IS_HEADER_CROP";

@@ -39,6 +39,10 @@
             android:name=".ui.MainActivity"
             android:screenOrientation="portrait" />
 
+
+        <activity android:name=".ui.common.ImageFetchActivity"
+            android:screenOrientation="portrait"/>
+
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="${CHANNEL_NAME}" />

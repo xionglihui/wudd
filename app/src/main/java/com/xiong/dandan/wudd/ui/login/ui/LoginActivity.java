@@ -12,6 +12,7 @@ import com.xiong.dandan.wudd.R;
 import com.xiong.dandan.wudd.common.base.BaseCommonActivity;
 import com.xiong.dandan.wudd.ui.login.contract.ILoginContract;
 import com.xiong.dandan.wudd.ui.login.presenter.LoginPresenterImp;
+import com.xiong.routerlibrary.url.ARouterPageUrl;
 
 import java.util.concurrent.TimeUnit;
 
@@ -22,7 +23,7 @@ import butterknife.ButterKnife;
  * login
  * Created by xionglh on 2017/1/4.
  */
-@Route(path = "/login/LoginActivity")
+@Route(path = ARouterPageUrl.ACTIVITY_LOGIN)
 public class LoginActivity extends BaseCommonActivity<ILoginContract.View, LoginPresenterImp> implements ILoginContract.View {
 
 
