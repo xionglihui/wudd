@@ -8,10 +8,10 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/CommonSdk" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/netlibrary" />
             <option value="$PROJECT_DIR$/routerlibrary" />
-            <option value="$PROJECT_DIR$/utilslibrary" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

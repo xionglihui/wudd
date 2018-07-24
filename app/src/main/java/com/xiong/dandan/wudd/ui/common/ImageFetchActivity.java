@@ -1,6 +1,5 @@
 package com.xiong.dandan.wudd.ui.common;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -10,7 +9,7 @@ import android.provider.MediaStore;
 import android.view.Window;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.xiong.dandan.utilslibrary.file.FileUtil;
+import com.xiong.dandan.common.util.FileUtil;
 import com.xiong.dandan.wudd.R;
 import com.xiong.dandan.wudd.common.base.BaseActivity;
 import com.xiong.dandan.wudd.libs.GlobalConstants;

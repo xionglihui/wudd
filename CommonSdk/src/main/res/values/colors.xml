@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--common -->
+    <color name="white">#ffffffff</color>
+    <color name="transparent">@android:color/transparent</color>
+    <color name="black">#FF000000</color>
+
+    <!--theme-->
+    <color name="status_bar_color">#333333</color>
+    <color name="base_theme_color">#2897ff</color>
+    <color name="base_theme_color_dark">#ff5400</color>
+    <color name="gray_common_background">#f1f1f1</color>
+    <color name="half_transparent_dialog_background">#60000000</color>
+
+    <!--text color-->
+    <color name="black_big_text">#333333</color>
+    <color name="black_normal_text">#666666</color>
+    <color name="black_small_text">#999999</color>
+    <color name="black_line_color">#d5d5d5</color>
+    <color name="green_normal_text">#5bc60c</color>
+    <color name="red_normal_text">#fc4e4d</color>
+    <color name="blue_normal_text">#0072ff</color>
+
+    <!--button color-->
+    <color name="org_button">#f6a41d</color>
+    <color name="org_button_down">#EC870E</color>
+    <color name="red_button">#da251a</color>
+    <color name="red_button_down">#c82129</color>
+
+    <!--手势密码-->
+    <color name="gesture_background">#00b7eb</color>
+    <color name="gesture_line">#0066a7</color>
+    <color name="gesture_error_line">@color/white</color>
+    <color name="gesture_tip">#ff3a00</color>
+
+    <color name="bule_project_list">#2eb3e8</color>
+    <color name="org_project_schedule">#ffa40c</color>
+    <color name="bule_foret">#2eb3e8</color>
+    <color name="org_gestre_line">#ffc8ad</color>
+    <color name="gray_spash_bg">#e4e4e4</color>
+    <color name="line_bg_cccccc">#d4d4d4</color>
+    <color name="grad_input_p">#cccccc</color>
+</resources>

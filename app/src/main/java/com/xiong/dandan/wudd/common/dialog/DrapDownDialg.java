@@ -6,7 +6,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
-import com.xiong.dandan.utilslibrary.common.MyPopWindow;
+import com.xiong.dandan.common.util.MyPopWindow;
 import com.xiong.dandan.wudd.R;
 
 import java.util.ArrayList;

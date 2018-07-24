@@ -6,7 +6,7 @@ import android.widget.Button;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.jakewharton.rxbinding.view.RxView;
-import com.xiong.dandan.utilslibrary.str.StrUtils;
+import com.xiong.dandan.common.util.StrUtils;
 import com.xiong.dandan.wudd.R;
 import com.xiong.dandan.wudd.common.base.BaseCommonActivity;
 import com.xiong.dandan.wudd.ui.login.contract.ILoginContract;

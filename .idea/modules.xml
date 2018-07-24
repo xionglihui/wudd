@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/CommonSdk/CommonSdk.iml" filepath="$PROJECT_DIR$/CommonSdk/CommonSdk.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/netlibrary/netlibrary.iml" filepath="$PROJECT_DIR$/netlibrary/netlibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/routerlibrary/routerlibrary.iml" filepath="$PROJECT_DIR$/routerlibrary/routerlibrary.iml" />
-      <module fileurl="file://$PROJECT_DIR$/utilslibrary/utilslibrary.iml" filepath="$PROJECT_DIR$/utilslibrary/utilslibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/wudd.iml" filepath="$PROJECT_DIR$/wudd.iml" />
     </modules>
   </component>
