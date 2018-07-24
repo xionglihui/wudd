@@ -1,5 +1,6 @@
 package com.xiong.dandan.wudd.net.api;
 
+import com.xiong.dandan.utilslibrary.common.GJsonUtil;
 import com.xiong.dandan.utilslibrary.security.Base64Utils;
 import com.xiong.dandan.utilslibrary.security.CortyTool;
 import com.xiong.dandan.wudd.Config;
@@ -10,6 +11,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import rx.Observable;
 
 /**
@@ -19,15 +22,16 @@ import rx.Observable;
 public class Api {
 
 
-    public WuddNet wuddNet;
+    private WuddNet wuddNet;
+    private static final String MEDIA_TYPE = "application/json;charset=utf-8";
 
-    protected static ApiService apiService;
+    public static ApiService apiService;
 
     public Api() {
         init();
     }
 
-    public void init(){
+    private void init(){
         wuddNet = new WuddNet(Config.COMMON_URL);
         if (apiService == null)
             apiService = wuddNet.getApiSerice(ApiService.class);
@@ -51,6 +55,10 @@ public class Api {
         header.put("sign", CortyTool.encryptMD5(sign));
         header.put("Accept-Encoding", "gzip");
         return header;
+    }
+    protected RequestBody toRequestBody(Object object) {
+        String json = GJsonUtil.toJson(object, Object.class);
+        return RequestBody.create(MediaType.parse(MEDIA_TYPE), json);
     }
 
 

@@ -4,6 +4,7 @@ import com.xiong.dandan.wudd.net.request.LoginParamsRequest;
 import com.xiong.dandan.wudd.net.response.CommonResponse;
 import com.xiong.dandan.wudd.net.response.UserInfo;
 
+import okhttp3.RequestBody;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -17,14 +18,7 @@ import rx.Observable;
 public interface ApiService {
 
     @POST("/user/loginMobile")
-    Observable<CommonResponse<UserInfo>> requestLogin(@Body LoginParamsRequest mLoginParams);
-
-
-    @POST("/user/loginMobile")
-    Observable<CommonResponse<UserInfo>> requestHeadToken(@Header("token") String token );
-
-    @GET("/user/loginMobile")
-    Observable<CommonResponse<UserInfo>> requestGet(@Query("custId") String custId);
+    Observable<CommonResponse<UserInfo>> requestLogin(@Body RequestBody requestBody);
 
 
 

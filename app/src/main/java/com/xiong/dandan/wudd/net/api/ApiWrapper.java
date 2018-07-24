@@ -13,16 +13,7 @@ public class ApiWrapper extends Api {
 
     @SuppressWarnings("unchecked")
     public Observable<CommonResponse<UserInfo>> getLoginUserInfo(LoginParamsRequest loginParamsRequest) {
-        return applySchedulers(apiService.requestLogin(loginParamsRequest));
+        return applySchedulers(apiService.requestLogin(toRequestBody(loginParamsRequest)));
     }
 
-    @SuppressWarnings("unchecked")
-    public Observable<CommonResponse<UserInfo>> getHeadToken(String token) {
-        return applySchedulers(apiService.requestHeadToken(token));
-    }
-
-    @SuppressWarnings("unchecked")
-    public Observable<CommonResponse<UserInfo>> getGetInfo(String custid) {
-        return applySchedulers(apiService.requestGet(custid));
-    }
 }
