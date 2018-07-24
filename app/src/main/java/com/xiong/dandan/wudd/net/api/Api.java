@@ -2,33 +2,15 @@ package com.xiong.dandan.wudd.net.api;
 
 import com.xiong.dandan.utilslibrary.security.Base64Utils;
 import com.xiong.dandan.utilslibrary.security.CortyTool;
-import com.xiong.dandan.wudd.AppMyAplicition;
 import com.xiong.dandan.wudd.Config;
-import com.xiong.dandan.wudd.R;
-
 import com.xiong.dandan.wudd.net.response.CommonResponse;
 import com.xionglihui.dandan.netlibrary.net.WuddNet;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
-import okhttp3.Cache;
-import okhttp3.Interceptor;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
-import rx.schedulers.Schedulers;
 
 /**
  * api

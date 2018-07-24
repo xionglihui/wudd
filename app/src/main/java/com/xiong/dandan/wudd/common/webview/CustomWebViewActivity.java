@@ -9,8 +9,6 @@ import com.xiong.dandan.wudd.R;
 import com.xiong.dandan.wudd.common.base.BaseTitleBarActivity;
 import com.xiong.dandan.wudd.view.CustomWebView;
 
-import butterknife.BindView;
-
 
 /**
  * Webview显示
@@ -28,7 +26,6 @@ public class CustomWebViewActivity extends BaseTitleBarActivity {
      */
     public static final String WEB_SHOW_TITLE_TAG = "WEB_SHOW_TITLE_TAG";
 
-    @BindView(R.id.wb_products_loding)
     CustomWebView mWebView;
 
     @Override
@@ -43,6 +40,7 @@ public class CustomWebViewActivity extends BaseTitleBarActivity {
         super.initViews();
         showLeftButton();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE | WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        mWebView = (CustomWebView) findViewById(R.id.wb_products_loding);
         String title = getIntent().getStringExtra(WEB_SHOW_TITLE_TAG);
         setTitle(title);
         WebSettings setting = mWebView.getSettings();

@@ -23,7 +23,7 @@
         tools:replace="android:label,android:allowBackup">
 
         <activity
-            android:name=".ui.login.ui.LoginActivity"
+            android:name=".ui.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,7 +36,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.login.ui.LoginActivity"
             android:screenOrientation="portrait" />
 
 

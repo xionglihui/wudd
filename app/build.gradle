@@ -1,9 +1,12 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion "27.0.3"
+    buildToolsVersion '28.0.0'
     useLibrary "org.apache.http.legacy"
     defaultConfig {
         applicationId "com.xiong.dandan.wudd"
@@ -51,16 +54,9 @@ android {
     }
 
     productFlavors {
-        pcwangzhan {
-            manifestPlaceholders = [CHANNEL_NAME: "PC网站"]
-        }
         yingyongbao {
             manifestPlaceholders = [CHANNEL_NAME: "应用宝"]
         }
-        qihu360 {
-            manifestPlaceholders = [CHANNEL_NAME: "360应用市场"]
-        }
-
     }
 }
 
@@ -73,17 +69,13 @@ dependencies {
     implementation 'com.android.support:palette-v7:27.1.1'
     implementation 'com.android.support:support-annotations:27.1.1'
     implementation 'in.srain.cube:ultra-ptr:1.0.11'
-
-    implementation 'com.jakewharton.rxbinding:rxbinding:0.1.0'
-
-    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'com.jakewharton.rxbinding:rxbinding:0.4.0'
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
     implementation 'org.greenrobot:eventbus:3.0.0'
     implementation 'cn.pedant.safewebviewbridge:library:1.4'
-    implementation 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-
     implementation 'com.alibaba:arouter-api:1.3.1'
     annotationProcessor 'com.alibaba:arouter-compiler:1.1.4'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     compile project(':netlibrary')
     compile project(':utilslibrary')
     compile project(':routerlibrary')

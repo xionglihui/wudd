@@ -2,7 +2,6 @@ package com.xiong.dandan.wudd.ui.login.ui;
 
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
-
 import android.widget.Button;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -16,9 +15,6 @@ import com.xiong.routerlibrary.url.ARouterPageUrl;
 
 import java.util.concurrent.TimeUnit;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 /**
  * login
  * Created by xionglh on 2017/1/4.
@@ -27,12 +23,7 @@ import butterknife.ButterKnife;
 public class LoginActivity extends BaseCommonActivity<ILoginContract.View, LoginPresenterImp> implements ILoginContract.View {
 
 
-    @BindView(R.id.txt_login_phone)
-    TextInputEditText mTxtName;
-    @BindView(R.id.txt_login_pwd)
-    TextInputEditText mTxtPwd;
-    @BindView(R.id.btn_login_commint)
-    Button mBtnCommint;
+     TextInputEditText mTxtName, mTxtPwd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +34,10 @@ public class LoginActivity extends BaseCommonActivity<ILoginContract.View, Login
 
     @Override
     protected void initViews() {
-        RxView.clicks(mBtnCommint).throttleFirst(2000, TimeUnit.MILLISECONDS).subscribe(t -> {
+        mTxtName = (TextInputEditText) findViewById(R.id.txt_login_phone);
+        mTxtPwd = (TextInputEditText) findViewById(R.id.txt_login_pwd);
+        Button btnCommint = (Button) findViewById(R.id.btn_login_commint);
+        RxView.clicks(btnCommint).throttleFirst(2000, TimeUnit.MILLISECONDS).subscribe(t -> {
             onClickLogin();
         });
     }

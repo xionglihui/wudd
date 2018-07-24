@@ -10,8 +10,8 @@ import android.view.View;
 import com.xiong.dandan.wudd.AppMyAplicition;
 import com.xiong.dandan.wudd.common.ActivityPageManager;
 import com.xiong.dandan.wudd.common.dialog.CustomProgressDialog;
-import com.xiong.dandan.wudd.net.api.ApiWrapper;
 import com.xiong.dandan.wudd.common.webview.CustomWebViewActivity;
+import com.xiong.dandan.wudd.net.api.ApiWrapper;
 import com.xiong.dandan.wudd.ui.common.ImageFetchActivity;
 import com.xionglihui.dandan.netlibrary.net.APIException;
 import com.xionglihui.dandan.netlibrary.net.RequestCallBack;
@@ -19,8 +19,6 @@ import com.xionglihui.dandan.netlibrary.net.RequestCallBack;
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
 import rx.subscriptions.CompositeSubscription;
@@ -53,7 +51,6 @@ public abstract class BaseActivity extends FragmentActivity {
      */
     public CustomProgressDialog mProgressDialog = null;
 
-    private Unbinder mUnbinder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +62,6 @@ public abstract class BaseActivity extends FragmentActivity {
     @Override
     public void setContentView(int layoutResID) {
         View view = LayoutInflater.from(this).inflate(layoutResID, null);
-        mUnbinder = ButterKnife.bind(this);
         setContentView(view);
     }
 
@@ -202,7 +198,6 @@ public abstract class BaseActivity extends FragmentActivity {
         super.onDestroy();
         ActivityPageManager.unbindReferences(mContentView);
         ActivityPageManager.getInstance().removeActivity(this);
-        mUnbinder.unbind();
         mContentView = null;
         if (mProgressDialog.isShowing())
             mProgressDialog.dismiss();
@@ -265,7 +260,6 @@ public abstract class BaseActivity extends FragmentActivity {
         intent.putExtra(CustomWebViewActivity.WEB_SHOW_URL_TAG, url);
         skipAct(intent);
     }
-
 
     @Override
     public void onBackPressed() {
