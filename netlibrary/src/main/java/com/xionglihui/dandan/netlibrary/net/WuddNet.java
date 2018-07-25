@@ -2,6 +2,10 @@ package com.xionglihui.dandan.netlibrary.net;
 
 import android.util.LruCache;
 
+import com.xionglihui.dandan.netlibrary.BuildConfig;
+import com.xionglihui.dandan.netlibrary.net.interceptor.HeadInterceptor;
+import com.xionglihui.dandan.netlibrary.net.interceptor.HttpRequestInterceptor;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -27,6 +31,8 @@ public class WuddNet  {
 
     private Map<String, String> mHeadsMap=new HashMap<>();
 
+    private Map<String, String> mQureyMap=new HashMap<>();
+
     public WuddNet(String httpUrl) {
         this.httpUrl = httpUrl;
     }
@@ -45,9 +51,17 @@ public class WuddNet  {
     private Retrofit getRetrofit() {
         if (retrofit == null) {
             HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+            if (BuildConfig.DEBUG)
+                interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+            else
+                interceptor.setLevel(HttpLoggingInterceptor.Level.NONE);
+            //add common  parameter
+            HttpRequestInterceptor.Builder httpCommonIntercepoter = new HttpRequestInterceptor.Builder();
+            httpCommonIntercepoter.addHeaderParamsMap(mHeadsMap);
+            httpCommonIntercepoter.addParamsMap(mQureyMap);
+
             OkHttpClient client = new OkHttpClient.Builder().connectTimeout(15, TimeUnit.SECONDS)
-                    .addInterceptor(interceptor).addInterceptor(new HeadInterceptor(mHeadsMap)).build();
+                    .addInterceptor(interceptor).addInterceptor(httpCommonIntercepoter.build()).build();
             retrofit = new Retrofit.Builder().client(client).baseUrl(httpUrl).addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create()).build();
         }
