@@ -3,7 +3,8 @@ package com.xionglihui.dandan.netlibrary.net;
 import android.util.LruCache;
 
 import com.xionglihui.dandan.netlibrary.BuildConfig;
-import com.xionglihui.dandan.netlibrary.net.interceptor.HeadInterceptor;
+import com.xionglihui.dandan.netlibrary.net.exception.NetError;
+import com.xionglihui.dandan.netlibrary.net.exception.NetException;
 import com.xionglihui.dandan.netlibrary.net.interceptor.HttpRequestInterceptor;
 
 import java.util.HashMap;
@@ -23,7 +24,7 @@ import rx.schedulers.Schedulers;
 /**
  * Created by xionglihui on 2018/5/19.
  */
-public class WuddNet  {
+public class RetrofitClient {
 
     private static Retrofit retrofit;
 
@@ -33,7 +34,7 @@ public class WuddNet  {
 
     private Map<String, String> mQureyMap=new HashMap<>();
 
-    public WuddNet(String httpUrl) {
+    public RetrofitClient(String httpUrl) {
         this.httpUrl = httpUrl;
     }
 
@@ -100,7 +101,7 @@ public class WuddNet  {
                     subscriber.onNext(response);
                 } else {
                     if (!subscriber.isUnsubscribed()) {
-                        subscriber.onError(new APIException("0", "网络异常，请检查网络后再试"));
+                        subscriber.onError(new NetException(NetError.SYSTEM_ERROR));
                     }
                     return;
                 }

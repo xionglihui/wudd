@@ -5,7 +5,7 @@ import com.xiong.dandan.common.tools.Base64Utils;
 import com.xiong.dandan.common.tools.CortyTool;
 import com.xiong.dandan.wudd.Config;
 import com.xiong.dandan.wudd.net.response.CommonResponse;
-import com.xionglihui.dandan.netlibrary.net.WuddNet;
+import com.xionglihui.dandan.netlibrary.net.RetrofitClient;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -22,7 +22,7 @@ import rx.Observable;
 public class Api {
 
 
-    private WuddNet wuddNet;
+    private RetrofitClient retrofitClient;
     private static final String MEDIA_TYPE = "application/json;charset=utf-8";
 
     public static ApiService apiService;
@@ -32,10 +32,10 @@ public class Api {
     }
 
     private void init(){
-        wuddNet = new WuddNet(Config.COMMON_URL);
+        retrofitClient = new RetrofitClient(Config.COMMON_URL);
         if (apiService == null)
-            apiService = wuddNet.getApiSerice(ApiService.class);
-        wuddNet.setHeads(getHttpHeader());
+            apiService = retrofitClient.getApiSerice(ApiService.class);
+        retrofitClient.setHeads(getHttpHeader());
 
     }
 
@@ -61,48 +61,14 @@ public class Api {
         return RequestBody.create(MediaType.parse(MEDIA_TYPE), json);
     }
 
-
     /**
      * @param responseObservable
      * @param <T>
      * @return
      */
     protected <T> Observable applySchedulers(Observable<CommonResponse<T>> responseObservable) {
-        return wuddNet.applySchedulers(responseObservable);
+        return retrofitClient.applySchedulers(responseObservable);
     }
-//
-//    /**
-//     * 对网络接口返回的Response进行分割操作 对于jasn 解析错误以及返回的 响应实体为空的情况
-//     *
-//     * @param response
-//     * @return
-//     */
-//    public <T> Observable<T> flatResponse(final CommonResponse<T> response) {
-//        return Observable.create(new Observable.OnSubscribe<T>() {
-//            @Override
-//            public void call(Subscriber<? super T> subscriber) {
-//                if (response != null && !subscriber.isUnsubscribed()) {
-//                    CommonResponse<T>.Result<T> result = response.getResult();
-//                    if (!result.isError() || result.isSuccess()) {
-//                        subscriber.onNext(result.getData());
-//                    } else {
-//                        subscriber.onError(new APIException(result.getCode(),result.getMessage()));//业务错误
-//                    }
-//                } else {
-//                    if (!subscriber.isUnsubscribed()) {
-//                        subscriber.onError(new APIException("0",AppMyAplicition.genInstance().getString(R.string.exception_json_error)));
-//                    }
-//                    return;
-//                }
-//                if (!subscriber.isUnsubscribed()) {
-//                    subscriber.onCompleted();
-//                }
-//
-//            }
-//
-//        });
-//    }
-
 
 }
 

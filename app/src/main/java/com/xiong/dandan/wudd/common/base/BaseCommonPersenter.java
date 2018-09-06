@@ -2,7 +2,7 @@ package com.xiong.dandan.wudd.common.base;
 
 import com.xiong.dandan.wudd.AppMyAplicition;
 import com.xiong.dandan.wudd.net.api.ApiWrapper;
-import com.xionglihui.dandan.netlibrary.net.APIException;
+import com.xionglihui.dandan.netlibrary.net.exception.NetException;
 import com.xionglihui.dandan.netlibrary.net.RequestCallBack;
 
 import java.lang.ref.WeakReference;
@@ -46,8 +46,8 @@ public abstract class BaseCommonPersenter<T>  {
 
             @Override
             public void onError(Throwable e) {
-                if (e instanceof APIException) {
-                    APIException exception = (APIException) e;
+                if (e instanceof NetException) {
+                    NetException exception = (NetException) e;
                     AppMyAplicition.genInstance().showToast(exception.message);
                     requestCallBack.onError(exception);//业务错误
                 }  else if (e instanceof SocketTimeoutException) {

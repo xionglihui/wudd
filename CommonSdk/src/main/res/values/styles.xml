@@ -91,6 +91,7 @@
     <style name="common_line_horizontal_magtop8" parent="@style/common_line_horizontal">
         <item name="android:layout_marginTop">8dp</item>
     </style>
+
     <style name="Theme.PageIndicatorDefaults" parent="android:Theme">
         <item name="vpiIconPageIndicatorStyle">@style/Widget.IconPageIndicator</item>
         <item name="vpiTabPageIndicatorStyle">@style/Widget.TabPageIndicator</item>

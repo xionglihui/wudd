@@ -23,6 +23,7 @@ import java.util.concurrent.TimeUnit;
 public class LoginActivity extends BaseCommonActivity<ILoginContract.View, LoginPresenterImp> implements ILoginContract.View {
 
 
+
      TextInputEditText mTxtName, mTxtPwd;
 
     @Override

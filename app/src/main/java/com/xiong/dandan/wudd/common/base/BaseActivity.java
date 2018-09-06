@@ -13,7 +13,7 @@ import com.xiong.dandan.wudd.common.dialog.CustomProgressDialog;
 import com.xiong.dandan.wudd.common.webview.CustomWebViewActivity;
 import com.xiong.dandan.wudd.net.api.ApiWrapper;
 import com.xiong.dandan.wudd.ui.common.ImageFetchActivity;
-import com.xionglihui.dandan.netlibrary.net.APIException;
+import com.xionglihui.dandan.netlibrary.net.exception.NetException;
 import com.xionglihui.dandan.netlibrary.net.RequestCallBack;
 
 import java.net.ConnectException;
@@ -124,8 +124,8 @@ public abstract class BaseActivity extends FragmentActivity {
 
             @Override
             public void onError(Throwable e) {
-                if (e instanceof APIException) {
-                    APIException exception = (APIException) e;
+                if (e instanceof NetException) {
+                    NetException exception = (NetException) e;
                     AppMyAplicition.genInstance().showToast(exception.message);
                     requestCallBack.onError(exception);
                 } else if (e instanceof SocketTimeoutException) {
